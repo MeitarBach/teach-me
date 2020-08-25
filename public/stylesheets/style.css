@@ -321,7 +321,7 @@ a.simpleCart_empty {
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	-ms-background-size:cover;
-	min-height:700px;
+	min-height:1000px;
 }
 .banner-info h3{
 	font-size:5em;
@@ -329,13 +329,15 @@ a.simpleCart_empty {
 	margin:0;
 }
 .banner-info {
+	opacity: 1;
     margin: 9em 0 0;
     text-align: center;
 }
 .banner-info h4{
 	font-size: 3em;
-    color: #fff;
-    margin: 0em 0 0 7.5em;
+	color: rgb(78, 72, 72);
+	opacity: 1;
+    margin: 0em 0 0 3.5em;
 	font-weight:300;
 	font-family: 'Lato', sans-serif;
 }
@@ -355,6 +357,22 @@ a.simpleCart_empty {
 	line-height:1.8em;
 	width:65%;
 }
+
+.login-register-links input[type="button"]{
+	outline: none;
+    border: none;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #fff;
+    display: block;
+    width: 20%;
+    background:#FFC229;
+    margin: 1.5em 0 0;
+}
+.login-register-links input[type="button"]:hover{
+	background:#d8703f;
+}
+
 /*-- //banner --*/
 /*-- banner-bottom --*/
 .banner-bottom,.new-collections,.checkout,.collections-bottom,.timer,.register,.products,.typo,.mail,.single,.login,.single-related-products{
