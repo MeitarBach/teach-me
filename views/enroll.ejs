@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TeachMe | Become a Teacher</title>
+    <title>TeachMe | Register</title>
     <!-- css -->
 	<link href="../stylesheets/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="../stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -47,12 +47,19 @@
 <!-- register -->
 	<div class="register">
 		<div class="container">
-			<h3 class="animated wow zoomIn" data-wow-delay=".5s">Register Here</h3>
+			<h3 class="animated wow zoomIn" data-wow-delay=".5s">Become a Teacher</h3>
 			<div class="login-form-grids">
-				<h5 class="animated wow slideInUp" data-wow-delay=".5s">user information</h5>
 				<form class="animated wow slideInUp" data-wow-delay=".5s">
-					<input type="text" placeholder="First Name..." required=" " >
-					<input type="text" placeholder="Last Name..." required=" " >
+                    <div class="upload-image">
+                        <input type="file" id="file" placeholder="Instructor Photo" accept="image/*" required=" " >
+                        <label for="file">
+                            Upload Photo
+                        </label>
+                    </div>
+                    <input type="text" placeholder="What do you teach?" required=" " >
+                    <textarea rows="4" cols="50">
+                        Add details about yourself and your experience
+                    </textarea>
 				</form>
 				<h6 class="animated wow slideInUp" data-wow-delay=".5s">Login information</h6>
 				<form class="animated wow slideInUp" data-wow-delay=".5s">
