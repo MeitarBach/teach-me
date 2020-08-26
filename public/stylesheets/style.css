@@ -1,9 +1,3 @@
-/*--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
 html, body{
     font-size: 100%;
 	background:	#fff;
@@ -316,12 +310,13 @@ a.simpleCart_empty {
 /*-- banner --*/
 .banner{
 	background:url(../images/banner.jpg) no-repeat 0px 0px;
-	background-size:cover;
+	background:url(https://www.gettingsmart.com/wp-content/uploads/2017/08/Video-Professional-Development-Feature-Image.jpg) no-repeat 0px 0px;
+	background-size:auto;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	-ms-background-size:cover;
-	min-height:1000px;
+	/* min-height:1000px; */
 }
 .banner-info h3{
 	font-size:5em;
@@ -330,12 +325,12 @@ a.simpleCart_empty {
 }
 .banner-info {
 	opacity: 1;
-    margin: 9em 0 0;
+    margin: 3.5em 0 9em 0;
     text-align: center;
 }
 .banner-info h4{
 	font-size: 3em;
-	color: rgb(78, 72, 72);
+	color: rgb(255, 255, 255);
 	opacity: 1;
     margin: 0em 0 0 3.5em;
 	font-weight:300;
@@ -352,10 +347,14 @@ a.simpleCart_empty {
 }
 .banner-info1 p{
 	font-size:2em;
-	color:#fff;
-	margin:0;
+	color:rgb(9, 241, 203);
+	margin:0 ;
 	line-height:1.8em;
 	width:65%;
+}
+
+.login-register-links{
+	margin: 1.5em 5em; 
 }
 
 .login-register-links input[type="button"]{
@@ -367,8 +366,10 @@ a.simpleCart_empty {
     display: block;
     width: 20%;
     background:#FFC229;
-    margin: 1.5em 0 0;
+	margin: 1.5em 0 0;
+	display: inline-block;
 }
+
 .login-register-links input[type="button"]:hover{
 	background:#d8703f;
 }
@@ -936,7 +937,7 @@ p.est{
 /*-- footer --*/
 .footer{
 	background:#2E2E2E;
-	padding:3em 0;
+	padding:2em 0;
 }
 .footer-grid h3{
 	font-size:2em;
@@ -1026,7 +1027,7 @@ p.est{
 }
 .footer-logo{
 	text-align:center;
-	margin:3em 0;
+	margin:1em 0;
 }
 .footer-logo h2 a{
 	font-size: 2em;
@@ -2442,6 +2443,7 @@ td.invert-image a img {
 	}
 	.banner-info1 p {
 		font-size: 1.5em;
+		margin: 0 0 0 5em;
 	}
 	.banner-info {
 		margin: 5em 0 0;
