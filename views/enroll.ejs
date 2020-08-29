@@ -53,16 +53,16 @@
 		<div class="container">
 			<h3 class="animated wow zoomIn" data-wow-delay=".5s">Become a Teacher</h3>
 			<div class="login-form-grids">
-				<form class="animated wow slideInUp" data-wow-delay=".5s">
+				<div class="animated wow slideInUp" data-wow-delay=".5s">
                     <div class="upload-image">
                         <input type="file" id="file" accept="image/*" required=" " >
 						<label for="file" onclick="displayFileName()">Upload Photo</label>
 						<span id=fileUploaded></span>
                     </div>
-                    <input type="text" placeholder="What do you teach?" required=" " >
-                    <textarea maxlength="200" placeholder="Add details about yourself and your experience"></textarea>
-					<input type="submit" value="Register">
-				</form>
+                    <input type="text" name="proficiencies" id="proficiencies" placeholder="What do you teach?" required=" " >
+                    <textarea maxlength="200" id="details" placeholder="Add details about yourself and your experience"></textarea>
+					<input type="submit" onclick="register()" value="Register">
+				</div>
 			</div>
 		</div>
 	</div>

@@ -2093,7 +2093,7 @@ label.radio {
 	background:#F7F7F9;
 	margin:3em auto 0;
 }
-.login-form-grids input[type="email"],.login-form-grids input[type="password"],.login-form-grids input[type="text"], .login-form-grids input[type="number"], .login-form-grids input[type="button"], .login-form-grids textarea, .upload-image span{
+.login-form-grids input[type="email"],.login-form-grids input[type="password"],.login-form-grids input[type="text"], .login-form-grids input[type="number"], .login-form-grids input[type="button"], .login-form-grids textarea, .upload-image span, .time-slots{
 	outline: none;
     border: 1px solid #DBDBDB;
     padding: 10px 10px 10px 45px;
@@ -2114,7 +2114,7 @@ label.radio {
 	padding: 0;
 	height: 8em;
 }
-.upload-image span{
+.upload-image span, .time-slots {
 	border: 0;
 }
 .forgot {
