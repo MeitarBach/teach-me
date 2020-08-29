@@ -1,8 +1,8 @@
-const registerButton = document.getElementById("registerButton");
+const registerButton = document.getElementById("registerForm");
 
-registerButton.addEventListener('click', (event)=> {
-    event.preventDefault()
-    register()
+registerButton.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    await register();
 });
 
 async function register() {
@@ -18,26 +18,23 @@ async function register() {
         password
     }
 
-    // console.log(user);
-
     try {
         const response = await fetch('/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
-//              'Content-Type': 'application/json;charset=utf-8'
             },
             body: JSON.stringify(user)
         });
 
-        console.log("current response is : "+ response);
+        console.log("current response is : " + JSON.stringify(response));
         const result = await response.json();
         
 
         if (response.status === 409) {
             document.getElementById("emailTaken").innerHTML = result.message;
         } else {
-            window.location.href = "http://localhost:3000/login";
+            window.location.href = "login";
         }
 
     } catch (err) {
