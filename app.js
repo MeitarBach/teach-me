@@ -10,7 +10,7 @@ const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 const enrollRouter = require('./routes/enroll');
-
+const uploadRouter = require('./routes/upload');
 
 const app = express();
 
@@ -29,6 +29,7 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/enroll', enrollRouter);
+app.use('/upload', uploadRouter);
 
 
 // catch 404 and forward to error handler
