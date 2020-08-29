@@ -9,6 +9,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', async(req, res) => {
+  console.log("check in front")
   const user = {
     id : shortid.generate(),
     firstName : req.body.firstName,
@@ -22,17 +23,18 @@ router.post('/', async(req, res) => {
    try {
     const users = await redisClient.lrange('users', 0, -1);
     const userExists = users.some((currentUser) => {
+    
       return JSON.parse(currentUser).email === user.email;
     });
 
-    console.log(userExists);
+    console.log(req.body);
 
     if (userExists) {
       res.status(409).send({message: "This email address already exists"});
     } else {
+      // everything works as expected
       const reply = await redisClient.lpush('users', JSON.stringify(user));
-      console.log("ERROR 2");
-      res.redirect('/login');
+      res.send({status: 200, data: 'ok'});
     }
 
   } catch (err) {
