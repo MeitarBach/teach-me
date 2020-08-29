@@ -5,3 +5,7 @@ function displayFileName() {
         document.getElementById("fileUploaded").innerHTML=`Chosen Picture: ${fileName}`;
     });
 }
+
+function submit(){
+    
+}
