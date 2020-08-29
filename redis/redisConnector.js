@@ -1,4 +1,4 @@
-const redis = require('redis');
+const redis = require('promise-redis')();
 const client = redis.createClient();
 
 client.on('connect', function() {

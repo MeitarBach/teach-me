@@ -10,11 +10,17 @@ router.get('/', function(req, res) {
 router.post('/', async (req, res) =>{
   const teacher = req.body;
   try {
-    
     console.log(`Teacher details: ${JSON.stringify(teacher)}`);
-    let response = await redisClient.lpush('teachers', JSON.stringify(teacher));
+    let postResponse = await redisClient.lpush('teachers', JSON.stringify(teacher));
+    console.log(postResponse);
+    
+    let getResponse = await redisClient.lrange('teachers', 0, -1);
+
+    console.log(getResponse);
+
   } catch (err) {
-    res.status(500)
+    console.log(err.message);
+    res.status(500).send({message: "Couldn't save teacher to redis"});
   }
   
   
