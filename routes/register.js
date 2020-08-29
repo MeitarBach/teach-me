@@ -22,7 +22,6 @@ router.post('/', async(req, res) => {
   try {
     const users = await redisClient.lrange('users', 0, -1);
     const userExists = users.some((currentUser) => {
-    
       return JSON.parse(currentUser).email === user.email;
     });
 
@@ -32,7 +31,7 @@ router.post('/', async(req, res) => {
       // everything works as expected
       console.log('Adding user to redis:');
       console.log(user);
-      const reply = await redisClient.lpush('users', JSON.stringify(user));
+      await redisClient.lpush('users', JSON.stringify(user));
       res.send({status: 200, data: 'ok'});
     }
 
