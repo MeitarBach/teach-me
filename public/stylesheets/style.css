@@ -309,15 +309,6 @@ a.simpleCart_empty {
 /*-- //header --*/
 /*-- banner --*/
 .banner{
-	/* background:url(../images/banner.jpg) no-repeat 0px 0px;
-	background:url(https://www.gettingsmart.com/wp-content/uploads/2017/08/Video-Professional-Development-Feature-Image.jpg) no-repeat 0px 0px;
-	background-size:auto;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover; */
-	/* min-height:1000px; */
-	
 	position: relative; 
     height: 100vh;
     width: 100%;
@@ -329,7 +320,6 @@ a.simpleCart_empty {
 .banner::before {    
 	content: "";
 	background:url(../images/banner.jpg) no-repeat 0px 0px;
-	background:url(https://www.gettingsmart.com/wp-content/uploads/2017/08/Video-Professional-Development-Feature-Image.jpg) no-repeat 0px 0px;
 	background-size: cover;
 	position: absolute;
 	top: 0px;
@@ -2494,7 +2484,9 @@ td.invert-image a img {
 	}
 	.banner-info1 p {
 		font-size: 1.5em;
-		margin: 0 0 0 5em;
+		margin: 0;
+		width: 100%;
+		text-align: center;
 	}
 	.banner-info {
 		margin: 5em 0 0;
