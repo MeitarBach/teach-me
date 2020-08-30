@@ -23,7 +23,7 @@ router.post('/', async(req, res) => {
   try {
     const users = await redisClient.lrange('users', 0, -1);
     const userExists = users.some((currentUser) => {
-      return JSON.parse(currentUser).email === user.email;
+      return JSON.parse(currentUser).email.toLowerCase() === user.email.toLowerCase();
     });
 
     if (userExists) {

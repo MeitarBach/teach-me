@@ -2,7 +2,9 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const logger = require('morgan');
+const RedisStore = require('connect-redis')(session);
 const redisClient = require('./redis/redisConnector');
 
 // Routers
@@ -23,6 +25,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'ThisIsHowYouUseRedisSessionStorage',
+  name: '_redisStore',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }, // Note that the cookie-parser module is no longer needed
+  store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient, ttl: 86400 }),
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
