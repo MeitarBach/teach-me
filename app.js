@@ -11,6 +11,7 @@ const redisClient = require('./redis/redisConnector');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
+const storeRouter = require('./routes/store');
 const registerRouter = require('./routes/register');
 const enrollRouter = require('./routes/enroll');
 const uploadRouter = require('./routes/upload');
@@ -37,8 +38,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/login', loginRouter);
+app.use('/store', storeRouter);
 app.use('/enroll', enrollRouter);
 app.use('/upload', uploadRouter);
 

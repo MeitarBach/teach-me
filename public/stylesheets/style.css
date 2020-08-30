@@ -169,7 +169,7 @@ ul.multi-column-dropdown h6 {
 	font-weight:500 !important;
 }
 .dropdown-menu.columns-3 {
-    min-width: 700px;
+    min-width: 250px;
     padding: 30px 30px;
 }
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
@@ -2780,7 +2780,7 @@ td.invert-image a img {
 		margin: 1em auto;
 	}
 	.dropdown-menu.columns-3 {
-		min-width: 585px;
+		min-width: 200px;
 	}
 	ul.multi-column-dropdown h6 {
 		font-size: 1.2em;
@@ -2862,7 +2862,7 @@ td.invert-image a img {
 }
 @media (max-width:800px){
 	.dropdown-menu.columns-3 {
-		min-width: 490px;
+		min-width: 200px;
 		padding: 1.5em;
 	}
 	.sb-search {
