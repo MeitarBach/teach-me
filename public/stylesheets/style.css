@@ -727,7 +727,8 @@ p.est{
     color: #222;
     margin: 1em 0 .3em;
     text-transform: uppercase;
-    display: block;
+	display: block;
+	text-align: center;
     text-decoration: none;
 }
 .new-collections-grid1 h4 a:hover{
@@ -737,6 +738,7 @@ p.est{
 	font-size:14px;
 	color:#999;
 	line-height:1.8em;
+	text-align: center;
 	margin:0 0 .5em;
 }
 .new-collections-grid1-left p a,.occasion-cart a{
@@ -866,6 +868,10 @@ p.est{
 .new-collections-grid1-image-pos1 {
     left: 41% !important;
 }
+/* .lesson-image img{
+	width: 250px;
+	height: 200px;
+} */
 .new-collections-grid1-sub{
 	float:left;
 	width:48.5%;
@@ -2045,7 +2051,7 @@ label.radio {
 .header-grid-left ul li.active,.header-grid-left ul li.active a{
 	color:#d8703f;
 }
-/*-- Ratings --*/
+/* -- Ratings --
 .rating1 {
     direction:ltr;
 }
@@ -2083,7 +2089,7 @@ label.radio {
 .starRating:not(old) > label:hover ~ label:before,
 .starRating:not(:hover) > :checked ~ label:before{
   opacity : 1;
-}
+} */
 /*-- //Ratings --*/
 /*-- //single --*/
 /*-- login --*/
