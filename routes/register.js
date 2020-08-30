@@ -8,6 +8,7 @@ router.get('/', function(req, res) {
   res.render('register');
 });
 
+/* POST a new user. */
 router.post('/', async(req, res) => {
   const user = {
     id : shortid.generate(),
