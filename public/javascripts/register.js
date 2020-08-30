@@ -34,7 +34,7 @@ async function register() {
         } else if (response.status === 500) {
             throw new Error("There was an error on the server");
         } else {
-            window.location.href = "login";
+            window.location.href = "store";
         }
 
     } catch (err) {

@@ -5,10 +5,10 @@ const redisClient = require('../redis/redisConnector');
 
 /* GET login page. */
 router.get('/', function(req, res) {
-  res.render('login');
+  res.render('login', {user: req.session.user});
 });
 
-router.post('/', async (req, res) =>{
+router.post('/', async (req, res, next) =>{
   console.log(req.body.email);
 
   try {
@@ -20,20 +20,20 @@ router.post('/', async (req, res) =>{
               user.password === req.body.password;
     });
     
-    if (user){
+    if (user){ // User exists
       user = JSON.parse(user);
       req.session.user = user;
 
       console.log(`Found user:`);
       console.log(user);
-      
+
       res.status(200).send({message: "ok"});
     } else {
       res.status(404).send({message: `The email or password were incorrect`});
     }
     
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 

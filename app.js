@@ -27,12 +27,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  secret: 'ThisIsHowYouUseRedisSessionStorage',
+  secret: 'TeachMeASecret',
   name: '_redisStore',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }, // Note that the cookie-parser module is no longer needed
-  store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient, ttl: 86400 }),
+  cookie: { secure: false },
+  store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient, ttl: 3 * 60 * 60 }), // 0.5 hour sessions
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
