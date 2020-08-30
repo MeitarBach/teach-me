@@ -33,12 +33,11 @@ router.post('/', async(req, res) => {
       console.log('Adding user to redis:');
       console.log(user);
       await redisClient.lpush('users', JSON.stringify(user));
-      res.send({status: 200, data: 'ok'});
+      res.status(201).send({message: "ok"});
     }
 
   } catch (err) {
-    res.status(500);
-    res.send({message: "Could not create new user"});
+    res.status(500).send({message: "Could not create new user"});;
   }
 });
 

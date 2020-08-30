@@ -1,6 +1,6 @@
-const registerButton = document.getElementById("registerForm");
+const registerForm = document.getElementById("registerForm");
 
-registerButton.addEventListener('submit', async (event) => {
+registerForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     await register();
 });
@@ -27,12 +27,12 @@ async function register() {
             body: JSON.stringify(user)
         });
 
-        console.log("current response is : " + JSON.stringify(response));
         const result = await response.json();
         
-
         if (response.status === 409) {
             document.getElementById("emailTaken").innerHTML = result.message;
+        } else if (response.status === 500) {
+            throw new Error("There was an error on the server");
         } else {
             window.location.href = "login";
         }
@@ -40,5 +40,4 @@ async function register() {
     } catch (err) {
         console.log(err);
     }
-    
 }
