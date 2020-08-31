@@ -2099,7 +2099,7 @@ label.radio {
 	background:#F7F7F9;
 	margin:3em auto 0;
 }
-.login-form-grids input[type="email"],.login-form-grids input[type="password"],.login-form-grids input[type="text"], .login-form-grids input[type="number"], .login-form-grids input[type="button"], .login-form-grids textarea, .upload-image span, .time-slots{
+.login-form-grids input[type="email"],.login-form-grids input[type="password"],.login-form-grids input[type="text"], .login-form-grids input[type="number"], .login-form-grids input[type="button"], .login-form-grids textarea, .upload-image span, .time-slots, .login-form-grids p{
 	outline: none;
     border: 1px solid #DBDBDB;
     padding: 10px 10px 10px 45px;
@@ -2115,6 +2115,7 @@ label.radio {
 	background:url(../images/img-sp.png) no-repeat 5px -220px #fff;
 	margin:1em 0 0;
 }
+
 .login-form-grids textarea{
 	resize: none;
 	padding: 0;
@@ -2143,6 +2144,10 @@ label.radio {
 .login-form-grids ::-webkit-input-placeholder{
 	color:#999;
 }
+.login-form-grids p{
+	border: 0;
+	padding: 10px 0 10px 0;
+}
 .forgot a{
 	color:#212121;
 	font-size:14px;
@@ -2151,6 +2156,7 @@ label.radio {
 .forgot a:hover{
 	color:#d8703f;
 }
+
 .login h4{
 	margin: 2em 0 0.5em;
     font-size: 1.5em;

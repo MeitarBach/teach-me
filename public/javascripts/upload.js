@@ -1,41 +1,53 @@
 let timeSlotID = 1;
 
+const uploadForm = document.getElementById("upload-form");
+
+uploadForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    await upload();
+});
+
 function addTimeSlot(){
     const timeSlot = document.createElement("INPUT");
     timeSlot.setAttribute("type", "datetime-local");
     timeSlot.setAttribute("id", timeSlotID++);
     const today = new Date().toISOString();
-    console.log(today)
+    console.log(today);
     timeSlot.setAttribute("min", today);
     document.getElementById("time-slots").appendChild(timeSlot);
 }
 
 async function upload() {
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const title = document.getElementById("title").value;
+    const subject = document.getElementById("subject").value;
+    const details = document.getElementById("details").value;
+    const time = document.getElementById("time").value;
+    const price = document.getElementById("price").value;
+
     
-    const user = {
-        firstName,
-        lastName,
-        email,
-        password
+    const newClass = {
+        title,
+        subject,
+        details,
+        time,
+        price
     }
 
+    console.log(JSON.stringify(newClass));
+
     try {
-        const response = await fetch('/register', {
+        const response = await fetch('/upload', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(newClass)
         });
 
         const result = await response.json();
         
         if (response.status === 409) {
-            document.getElementById("emailTaken").innerHTML = result.message;
+            // TODO
         } else if (response.status === 500) {
             throw new Error("There was an error on the server");
         } else {
