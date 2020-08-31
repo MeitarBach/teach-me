@@ -1,8 +1,14 @@
-const arr = [{id: 123, password: 666, name: "Meitar"}, {id: 456, name:"May"}]
+function splitArrayToChunks (arr, chunkSize) {
+    let resultArr = [];
+    let i, arrChunk;
+    for (i=0 ; i < arr.length ; i += chunkSize) {
+      arrChunk = arr.slice(i, i + chunkSize);
+      resultArr.push(arrChunk);
+    }
+  
+    return resultArr;
+}
 
+arr = [1,2,3,4,5,6,7];
 
-const user = arr.find( user => {
-    return user.id === 123 && user.password === 66;
-});
-
-console.log(user);
+console.log(splitArrayToChunks(arr, 3));

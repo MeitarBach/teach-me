@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const redisClient = require('../redis/redisConnector');
+// const upload = require('../controllers/multer');
 
 /* GET enrollment page. */
 router.get('/', function(req, res) {
@@ -25,5 +26,9 @@ router.post('/', async (req, res) =>{
   
   
 });
+
+// router.post('/', upload.single("file"), (req, res) => {
+
+// });
 
 module.exports = router;

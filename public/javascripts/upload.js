@@ -46,12 +46,10 @@ async function upload() {
 
         const result = await response.json();
         
-        if (response.status === 409) {
-            // TODO
+        if (response.status === 201) {
+            window.location.href = "store";
         } else if (response.status === 500) {
             throw new Error("There was an error on the server");
-        } else {
-            window.location.href = "store";
         }
 
     } catch (err) {

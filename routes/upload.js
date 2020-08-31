@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const shortid = require('shortid');
-const redisClient = require('../redis/redisConnector')
+const redisClient = require('../redis/redisConnector');
 
 /* GET upload class page. */
 router.get('/', function(req, res) {
