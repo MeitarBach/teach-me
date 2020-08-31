@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>TeachMe | Register</title>
+    <title>TeachMe | Become a Teacher</title>
     <!-- css -->
 	<!-- <link href="../stylesheets/bootstrap.css" rel="stylesheet" type="text/css" media="all" /> -->
 	<!-- <link href="../stylesheets/style.css" rel="stylesheet" type="text/css" media="all" /> -->
 	<!-- /css -->
+	<!-- js -->
+	<!-- <script type="text/javascript" src="../javascripts/enroll.js"></script> -->
+	<!-- <script src="../javascripts/jquery.min.js"></script> -->
+	<!-- /js -->
     <!-- <link rel="stylesheet" type="text/css" href="../stylesheets/jquery-ui.css"> -->
     <!-- for bootstrap working -->
-		<!-- <script type="text/javascript" src="../javascripts/bootstrap-3.1.1.min.js"></script> -->
-	<!-- //for bootstrap working -->
-	
+        <!-- <script type="text/javascript" src="../javascripts/bootstrap-3.1.1.min.js"></script> -->
+    <!-- //for bootstrap working -->
     <!-- <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'> -->
     <!-- <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
     <!-- animation-effect -->
@@ -27,49 +30,27 @@
 	
 <body>
 <!-- header -->
-	<!-- <div class="header">
-		<div class="container">
-			<div class="logo-nav">
-				<div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
-					<h1><a href="/">TeachMe <span>Shop anywhere</span></a></h1>
-				</div>
-				<div class="logo-nav-left1">
-					<nav class="navbar navbar-default">
-					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-						<ul class="nav navbar-nav">
-							<li><a href="/">Home</a></li>	
-							<li class="active"><a href="register" class="act">Register</a></li>
-							<li><a href="login">Login</a></li>
-						</ul>
-					</div>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-	<% include partials/header %>
-
+	<% include partials/logged-header %>
 <!-- //header -->
-<!-- register -->
+<!-- Teach -->
 	<div class="register">
 		<div class="container">
-			<h3 class="animated wow zoomIn" data-wow-delay=".5s">Register Here</h3>
+			<h3 class="animated wow zoomIn" data-wow-delay=".5s">Become a Teacher</h3>
 			<div class="login-form-grids">
-				<h5 class="animated wow slideInUp" data-wow-delay=".5s">user information</h5>
-				<form class="animated wow slideInUp" id="registerForm" data-wow-delay=".5s">
-					<input type="text" id="firstName" placeholder="First Name..." required>
-					<input type="text" id="lastName" placeholder="Last Name..." required>
-				<h6 class="animated wow slideInUp" data-wow-delay=".5s">Login information</h6>
-					<input type="email" id="email" placeholder="Email Address" required>
-					<span id="emailTaken"></span>
-					<input type="password" id="password" placeholder="Password" required>
-					<input type="submit" id="registerButton" value="Register">
-				</form>
+				<div class="animated wow slideInUp" data-wow-delay=".5s">
+                    <div class="upload-image">
+                        <input type="file" id="file" accept="image/*" required=" " >
+						<label for="file" onclick="displayFileName()">Upload Photo</label>
+						<span id=fileUploaded></span>
+                    </div>
+                    <input type="text" name="proficiencies" id="proficiencies" placeholder="What do you teach?" required=" " >
+                    <textarea maxlength="200" id="details" placeholder="Add details about yourself and your experience"></textarea>
+					<input type="submit" onclick="register()" value="Register">
+				</div>
 			</div>
 		</div>
 	</div>
-<!-- //register -->
+<!-- /Teach -->
 <!-- footer -->
 	<!-- <div class="footer">
 		<div class="container">
@@ -92,13 +73,8 @@
 			</div>
 		</div>
 	</div> -->
-
 	<% include partials/footer %>
 
 <!-- //footer -->
-
-<!-- javascript -->	
-<script type="text/javascript" src="../javascripts/register.js"></script>
-<!-- //javascript -->
 </body>
 </html>
