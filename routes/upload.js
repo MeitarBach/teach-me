@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
   teacher.isTeacher = true; // For coding - remove later
 
   if (!teacher.isTeacher){
-    res.redirect('enroll');
+    res.redirect('/enroll');
   }
 
   res.render('upload');
@@ -20,7 +20,7 @@ router.post('/', async(req, res) => {
   teacher.isTeacher = true; // For coding - remove later
 
   if (!teacher.isTeacher){
-    res.redirect('enroll');
+    res.redirect('/enroll');
   }
 
   const newClass = {

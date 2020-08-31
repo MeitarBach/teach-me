@@ -5,7 +5,11 @@ const redisClient = require('../redis/redisConnector');
 
 /* GET enrollment page. */
 router.get('/', function(req, res) {
+  if (req.session.user.isTeacher) {
+    res.redirect('/upload');
+  } else {
   res.render('enroll');
+  }
 });
 
 router.post('/', async (req, res) =>{
