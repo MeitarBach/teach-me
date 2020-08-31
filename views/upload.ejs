@@ -60,12 +60,13 @@
 			<h3 class="animated wow zoomIn" data-wow-delay=".5s">Upload Class</h3>
 			<div class="login-form-grids">
 				<form class="animated wow slideInUp" data-wow-delay=".5s">
-                    <input type="text" placeholder="Class's title" required=" " >
-                    <input type="text" placeholder="Class's subject" required=" " >
-                    <textarea maxlength="200" placeholder="Describe your class in a few words..."></textarea><br>
-                    <input type=button value="+ Add a Time Slot" onclick="addTimeSlot()"><br>
-                    <div class="time-slots" id="time-slots"></div><br>
-                    <input type="number" placeholder="Price in $">
+                    <input type="text" id="title" placeholder="Class's title" required>
+                    <input type="text" id="subject" placeholder="Class's subject" required>
+                    <textarea maxlength="200" id="details" placeholder="Describe your class in a few words..."></textarea><br>
+					<!-- <input type=button value="+ Add a Time Slot" onclick="addTimeSlot()"><br> -->
+					<input id="time" type="datetime-local" required> When? <br> <br>
+                    <!-- <div class="time-slots" id="time-slots"></div><br> -->
+                    <input id="price" type="number" placeholder="Price in $" required>
 					<input type="submit" value="Register">
 				</form>
 			</div>
