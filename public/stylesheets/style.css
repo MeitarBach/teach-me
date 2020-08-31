@@ -2188,10 +2188,10 @@ label.radio {
 /*-- //login --*/
 /*-- register --*/
 .register h3:before{
-	left:20%;
+	left:17%;
 }
 .register h3:after{
-	right:20%;
+	right:17%;
 }
 .login-form-grids h5,.login-form-grids h6{
 	font-size:1em;
