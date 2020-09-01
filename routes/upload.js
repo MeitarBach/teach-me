@@ -6,11 +6,10 @@ const redisClient = require('../redis/redisConnector');
 /* GET upload class page. */
 router.get('/', function(req, res) {
   const teacher = req.session.user;
-  teacher.isTeacher = true; // For coding - remove later
 
-  if (!teacher.isTeacher){
-    res.redirect('/enroll');
-  }
+  // if (!teacher.isTeacher){  //// UNCOMMENT
+  //   res.redirect('/enroll');
+  // }
 
   res.render('upload');
 });
@@ -23,13 +22,15 @@ router.post('/', async(req, res) => {
     res.redirect('/enroll');
   }
 
+  const time = new Date(req.body.time).toUTCString().slice(0, -7);
+
   const newClass = {
     id : shortid.generate(),
     instructor: `${teacher.firstName} ${teacher.lastName}`,
     title : req.body.title,
     subject : req.body.subject,
     details : req.body.details,
-    time : req.body.time,
+    time : time,
     price : req.body.price
   };
 
