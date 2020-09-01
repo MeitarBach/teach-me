@@ -22,7 +22,7 @@ router.post('/', async(req, res) => {
     res.redirect('/enroll');
   }
 
-  const time = new Date(req.body.time).toUTCString().slice(0, -7);
+  const startTime = new Date(req.body.time).toUTCString().slice(0, -7);
 
   const newClass = {
     id : shortid.generate(),
@@ -30,7 +30,8 @@ router.post('/', async(req, res) => {
     title : req.body.title,
     subject : req.body.subject,
     details : req.body.details,
-    time : time,
+    startTime : startTime,
+    endTime : req.body.endTime,
     price : req.body.price
   };
 

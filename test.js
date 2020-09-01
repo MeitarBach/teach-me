@@ -1,5 +1,2 @@
-let cart = {
-  items: [{instructor: "Asi Cohen", title:"piano"}, {instructor: "Efi Guitara", title:"guitar"}],
-  totalPrice: 60
-}
-console.log(JSON.parse(JSON.stringify(cart)));
+const date = new time("19:00"); 
+console.log(date);

@@ -9,12 +9,13 @@ const redisClient = require('./redis/redisConnector');
 
 // Routers
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const storeRouter = require('./routes/store');
 const registerRouter = require('./routes/register');
 const enrollRouter = require('./routes/enroll');
 const uploadRouter = require('./routes/upload');
+const usersRouter = require('./routes/users'); // accessible only by admin
+
 
 const app = express();
 
