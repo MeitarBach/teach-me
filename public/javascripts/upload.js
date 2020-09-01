@@ -7,29 +7,20 @@ uploadForm.addEventListener('submit', async (event) => {
     await upload();
 });
 
-function addTimeSlot(){
-    const timeSlot = document.createElement("INPUT");
-    timeSlot.setAttribute("type", "datetime-local");
-    timeSlot.setAttribute("id", timeSlotID++);
-    const today = new Date().toISOString();
-    console.log(today);
-    timeSlot.setAttribute("min", today);
-    document.getElementById("time-slots").appendChild(timeSlot);
-}
-
 async function upload() {
     const title = document.getElementById("title").value;
     const subject = document.getElementById("subject").value;
     const details = document.getElementById("details").value;
-    const time = document.getElementById("time").value;
+    const time = document.getElementById("start-time").value;
+    const endTime = document.getElementById("end-time").value;
     const price = document.getElementById("price").value;
-
     
     const newClass = {
         title,
         subject,
         details,
         time,
+        endTime,
         price
     }
 
