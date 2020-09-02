@@ -43,11 +43,11 @@
             <table class="timetable_sub">
                 <thead>
                     <tr>
-                        <th>SL No.</th>	
+                        <th>User #</th>	
                         <th>User First Name</th>
                         <th>User Last Name</th>
                         <th>Email</th>
-                        <th>Is a Teacher</th>
+                        <th>Teaching</th>
                         <th>Activity Log</th>
                     </tr>
                 </thead>
@@ -62,7 +62,7 @@
                     <% } else { %>
                         <td class="is-teacher">No</td>
                     <% } %>
-                    <td><a href="/users/activity-log/<%= users[i-1].id %>">view activity</a></form></td>
+                    <td><a href="/users/activityLog/<%= users[i-1].id %>">view activity</a></form></td>
                 </tr>
                 <% } %>
             </table>

@@ -19,4 +19,11 @@ router.get('/', checkSignIn, async (req, res) => {
   // }
 });
 
+router.get('/activityLog', checkSignIn, async (req, res) => {
+  // const userID = req.session.user.id;
+  // let cart = await redisClient.lrange("cart", 0, -1);
+  res.render('activityLog');
+
+})
+
 module.exports = router;
