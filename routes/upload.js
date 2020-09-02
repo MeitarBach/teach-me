@@ -32,7 +32,7 @@ router.post('/', async(req, res) => {
     details : req.body.details,
     startTime : startTime,
     endTime : req.body.endTime,
-    price : req.body.price
+    price : parseInt(req.body.price)
   };
 
   console.log(`Creating Class on DB:`);
