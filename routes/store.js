@@ -3,87 +3,64 @@ const router = express.Router();
 const checkSignIn = require('../controllers/session');
 const redisClient = require('../redis/redisConnector');
 const DButils = require('../controllers/utilities');
+const { NotExtended } = require('http-errors');
 
 /* GET store page. */
 router.get('/', checkSignIn, async (req, res) => {
   let lessons = await redisClient.lrange("classes", 0, -1);
   lessons = DButils.splitArrayToChunks(lessons, 3);
-
-  // console.log(lessons);
-  
   res.render('store', {lessons: lessons});
 });
 
 
 /* GET add item to cart */
-router.get('/add-to-cart/:id', checkSignIn, async (req, res) => {
+router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
   const userID = req.session.user.id;
   const lessonID = req.params.id
-  console.log(`User: ${userID} adds item: ${lessonID} to his cart`);
-  // const test = {
-  //   items: [
-  //     { instructor: 'Asi Cohen', title: 'piano' },
-  //     { instructor: 'Efi Guitara', title: 'guitar' }
-  //   ],
-  //   totalPrice: 60
-  // };
-
-  // await redisClient.HMSET('cards', userID, JSON.stringify(test));
+  console.log(`User: ${userID} is trying to add lesson: ${lessonID} to his cart`);
+  
   try{
+    // Get user's cart
     let userCart = await redisClient.hget('carts', userID);
     if (!userCart){
       userCart = {items:[], totalPrice: 0};
     } else {
       userCart = JSON.parse(userCart);
     }
+
+    // Check if the item is already in the cart
     const found = userCart.items.some(item => item.id === lessonID);
-    console.log(found);
+
+    // If it is there notify the user
     if (found){
-      console.log('This lesson is already in your cart');
-      res.send({message: 'This lesson is already in your cart'})
+      console.log('This lesson is already in his cart');
+      res.status(409).send({message: 'This lesson is already in your cart'});
+      return;
     }
 
+    // Find the lesson item
     const lessons = await redisClient.lrange('classes', 0, -1);
     let lesson = lessons.find( lesson => {
       lesson = JSON.parse(lesson);
       return lesson.id === lessonID;
     });
-
     lesson = JSON.parse(lesson);
 
-    console.log(`Adding lesson: ${lesson} to the users cart!`);
+    // Push it to the user's cart
+    console.log(`Adding lesson: ${lessonID} to the user's cart!`);
     userCart.items.push(lesson);
     userCart.totalPrice += lesson.price;
-    console.log(userCart);
-
     await redisClient.HMSET('carts', userID, JSON.stringify(userCart));
-    console.log("Successfully updated user's cart");
 
-    res.redirect('/store');
+    // Success - notify the user
+    console.log("Successfully updated user's cart:");
+    console.log(userCart);
+    res.status(200).send({message: "The lesson was added to your cart!"});
+
   } catch (err) {
-
+    next(err);
   }
   
 });
-
-function splitArrayToChunks (arr, chunkSize) {
-  let resultArr = [];
-  let i, arrChunk;
-  for (i=0 ; i < arr.length ; i += chunkSize) {
-    arrChunk = arr.slice(i, i + chunkSize);
-    resultArr.push(parseLessons(arrChunk));
-  }
-
-  return resultArr;
-}
-
-function parseLessons(arr){
-  const resultArr = [];
-  arr.forEach(lesson => {
-    resultArr.push(JSON.parse(lesson));
-  });
-
-  return resultArr;
-}
 
 module.exports = router;
