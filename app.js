@@ -15,6 +15,8 @@ const registerRouter = require('./routes/register');
 const enrollRouter = require('./routes/enroll');
 const uploadRouter = require('./routes/upload');
 const usersRouter = require('./routes/users'); // accessible only by admin
+const cartRouter = require('./routes/cart');
+
 
 
 const app = express();
@@ -44,6 +46,7 @@ app.use('/login', loginRouter);
 app.use('/store', storeRouter);
 app.use('/enroll', enrollRouter);
 app.use('/upload', uploadRouter);
+app.use('/cart', cartRouter);
 
 
 // catch 404 and forward to error handler
