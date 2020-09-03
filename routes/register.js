@@ -25,16 +25,17 @@ router.post('/', async(req, res, next) => {
 
   try {
     let users = await redisClient.hgetall('users');
-    users = Object.values(users);
-    console.log(users);
+    
     if(users === null){
       users = [];
     }
+    
+    users = Object.values(users);
+    console.log(users);
+    
     const userExists = users.some((currentUser) => {
       return JSON.parse(currentUser).email.toLowerCase() === user.email.toLowerCase();
     });
-
-    console.log(userExists);
 
     if (userExists) {
       res.status(409).send({message: "This email address already exists"});
