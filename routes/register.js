@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 });
 
 /* POST a new user. */
-router.post('/', async(req, res) => {
+router.post('/', async(req, res, next) => {
   const user = {
     id : shortid.generate(),
     firstName : req.body.firstName,
@@ -24,10 +24,17 @@ router.post('/', async(req, res) => {
   };
 
   try {
-    const users = await redisClient.lrange('users', 0, -1);
+    let users = await redisClient.hgetall('users');
+    users = Object.values(users);
+    console.log(users);
+    if(users === null){
+      users = [];
+    }
     const userExists = users.some((currentUser) => {
       return JSON.parse(currentUser).email.toLowerCase() === user.email.toLowerCase();
     });
+
+    console.log(userExists);
 
     if (userExists) {
       res.status(409).send({message: "This email address already exists"});
@@ -35,12 +42,13 @@ router.post('/', async(req, res) => {
       // everything works as expected
       console.log('Adding user to redis:');
       console.log(user);
-      await redisClient.lpush('users', JSON.stringify(user));
+      await redisClient.hmset('users', user.id, JSON.stringify(user));
       res.status(201).send({message: "ok"});
     }
 
   } catch (err) {
-    res.status(500).send({message: "Could not create new user"});;
+    error.log(err);
+    next(err);
   }
 });
 

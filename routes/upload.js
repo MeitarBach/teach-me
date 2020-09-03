@@ -7,14 +7,14 @@ const redisClient = require('../redis/redisConnector');
 router.get('/', function(req, res) {
   const teacher = req.session.user;
 
-  // if (!teacher.isTeacher){  //// UNCOMMENT
-  //   res.redirect('/enroll');
-  // }
+  if (!teacher.isTeacher){
+    res.redirect('/enroll');
+  }
 
   res.render('upload');
 });
 
-router.post('/', async(req, res) => {
+router.post('/', async(req, res, next) => {
   const teacher = req.session.user;
   console.log(teacher);
 
@@ -46,7 +46,7 @@ router.post('/', async(req, res) => {
     await redisClient.lpush('classes', JSON.stringify(newClass));
     res.status(201).send({message: "ok"});
   } catch (err) {
-    res.status(500).send({message: "Could not create class"});;
+    next(err);
   }
 
 });

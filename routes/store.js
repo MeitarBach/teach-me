@@ -6,10 +6,14 @@ const DButils = require('../controllers/utilities');
 const { NotExtended } = require('http-errors');
 
 /* GET store page. */
-router.get('/', checkSignIn, async (req, res) => {
-  let lessons = await redisClient.lrange("classes", 0, -1);
-  lessons = DButils.splitArrayToChunks(lessons, 3);
-  res.render('store', {lessons: lessons});
+router.get('/', checkSignIn, async (req, res, next) => {
+  try{
+    let lessons = await redisClient.lrange("classes", 0, -1);
+    lessons = DButils.splitArrayToChunks(lessons, 3);
+    res.render('store', {lessons: lessons});
+  } catch (err) {
+    next(err);
+  }
 });
 
 

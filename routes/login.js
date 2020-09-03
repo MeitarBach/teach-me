@@ -9,11 +9,10 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', async (req, res, next) =>{
-  console.log(req.body.email);
-
   try {
     // Authenticate User
-    const users = await redisClient.lrange('users', 0, -1);
+    let users = await redisClient.hgetall('users');
+    users = Object.values(users);
     let user = users.find( user => {
       user = JSON.parse(user);
       return user.email.toLowerCase() === req.body.email.toLowerCase() &&
@@ -22,11 +21,11 @@ router.post('/', async (req, res, next) =>{
     
     if (user){ // User exists
       user = JSON.parse(user);
-      user.activityLog.push((new Date()).toUTCString().slice(0, -7));
-      // await redisClient.lpush()
+      user.loginActivity.push((new Date()).toUTCString().slice(0, -7));
+      await redisClient.hmset('users', user.id, JSON.stringify(user));
       req.session.user = user;
 
-      console.log(`Found user:`);
+      console.log(`User ${user.id} Logged in:`);
       console.log(user);
 
       res.status(200).send({message: "ok"});
@@ -35,6 +34,7 @@ router.post('/', async (req, res, next) =>{
     }
     
   } catch (err) {
+    console.log(err);
     next(err);
   }
 });
