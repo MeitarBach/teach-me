@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
   const teacher = req.session.user;
 
   if (!teacher.isTeacher){
-    res.redirect('/enroll');
+    return res.redirect('/enroll');
   }
 
   res.render('upload');
