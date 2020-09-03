@@ -147,7 +147,7 @@
                 <div class="col-md-4">
                     <div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
                         <div class="new-collections-grid1-image">
-                            <div class="lesson-image"><a href="single.html" class="product-image"><img src="images/guitar-Efi.Jpeg" alt=" " class="img-responsive" /></a>
+                            <div class="lesson-image"><a href="single.html" class="product-image"><img width="150" height="150" src="<%= lessons[i][j].instructor.imageURL %>" alt=" " class="img-responsive" /></a>
                             </div>
                                 <div class="new-collections-grid1-image-pos">
                                 <a href="single.html">Quick View</a>
@@ -156,7 +156,7 @@
                             </div>
                         </div>
                         <h4><a href="single.html"><%= lessons[i][j].title %></a></h4>
-                        <p>Instructor: <%= lessons[i][j].instructor %></p>
+                        <p>Instructor: <%= lessons[i][j].instructor.name %></p>
                         <p>Time: <%= lessons[i][j].startTime%> - <%= lessons[i][j].endTime %></p>
                         <div class="new-collections-grid1-left simpleCart_shelfItem">
                             <p><span class="item_price">$<%= lessons[i][j].price %></span><a class="item_add" onclick="addToCart('<%= lessons[i][j].id %>')">add to cart </a></p>

@@ -16,17 +16,21 @@ router.get('/', function(req, res) {
 
 router.post('/', async(req, res) => {
   const teacher = req.session.user;
-  teacher.isTeacher = true; // For coding - remove later
+  console.log(teacher);
 
   if (!teacher.isTeacher){
     res.redirect('/enroll');
   }
 
   const startTime = new Date(req.body.time).toUTCString().slice(0, -7);
+  const instructor = {
+    name: `${teacher.firstName} ${teacher.lastName}`,
+    imageURL: teacher.imageURL
+  }
 
   const newClass = {
     id : shortid.generate(),
-    instructor: `${teacher.firstName} ${teacher.lastName}`,
+    instructor: instructor,
     title : req.body.title,
     subject : req.body.subject,
     details : req.body.details,
