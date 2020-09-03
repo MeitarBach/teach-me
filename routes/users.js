@@ -5,24 +5,32 @@ const redisClient = require('../redis/redisConnector');
 const DButils = require('../controllers/utilities');
 
 /* GET store page. */
-router.get('/', checkSignIn, async (req, res) => {
-  let users = await redisClient.lrange("users", 0, -1);
-  users = DButils.parseObjectArray(users);
+router.get('/', checkSignIn, async (req, res, next) => {
+  try {
+    let users = await redisClient.lrange("users", 0, -1);
+    users = DButils.parseObjectArray(users);
 
-  const user = req.session.user;
-  
-  // if (user.isAdmin) {
-    console.log(users.length);
-    res.render('users', {users: users});
-  // } else {
-  //   res.redirect('/store');
-  // }
+    const user = req.session.user;
+    
+    // if (user.isAdmin) {
+      console.log(users.length);
+      res.render('users', {users: users});
+    // } else {
+    //   res.redirect('/store');
+    // }
+  } catch (err) {
+      next(err);
+  }
 });
 
-router.get('/activity-log', checkSignIn, async (req, res) => {
-  // const userID = req.session.user.id;
-  // let cart = await redisClient.lrange("cart", 0, -1);
-  res.render('activityLog');
+router.get('/activity-log', checkSignIn, async (req, res, next) => {
+  const userID = req.session.user.id;
+  try {
+    let cart = await redisClient.lrange("cart", 0, -1);
+    res.render('activityLog');
+  } catch (err) {
+    next(err);
+  }
 
 })
 

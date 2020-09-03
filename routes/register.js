@@ -18,7 +18,9 @@ router.post('/', async(req, res) => {
     password : req.body.password,
     imageURL : 'images/users/default.jpg',
     isAdmin : false,
-    isTeacher : false
+    isTeacher : false,
+    loginActivity : [],
+    purchaseHistory : []
   };
 
   try {

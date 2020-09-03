@@ -22,6 +22,8 @@ router.post('/', async (req, res, next) =>{
     
     if (user){ // User exists
       user = JSON.parse(user);
+      user.activityLog.push((new Date()).toUTCString().slice(0, -7));
+      // await redisClient.lpush()
       req.session.user = user;
 
       console.log(`Found user:`);
