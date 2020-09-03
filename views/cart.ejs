@@ -36,7 +36,7 @@
                     <td class="invert"><%= userCart.items[i-1].subject %></td>
                     <td class="invert"><%= userCart.items[i-1].details %></td>
                     <td class="invert"><%= userCart.items[i-1].startTime %> - <%= userCart.items[i-1].endTime %></td>
-                    <td class="invert-image"><img height="100" width="100" src="images/guitar-Efi.jpeg" alt="instructor" class="img-responsive" /> <%= userCart.items[i-1].instructor %></td>
+                    <td class="invert-image"><img height="100" width="100" src="images/users/default.jpg" alt="instructor" class="img-responsive" /> <%= userCart.items[i-1].instructor %></td>
                     <td class="invert">$<%= userCart.items[i-1].price %></td>
                     <td class="invert">
                         <div class="rem">
@@ -63,7 +63,7 @@
                         <li><%= userCart.items[i].title %><i></i> <span>$<%= userCart.items[i].price %></span></li>
                     <% } %>
                     
-                    <li class="total-price">Total <i>-</i> <span>$<%= userCart.totalPrice %></span></li>
+                    <li class="total-price">Total <i></i> <span>$<%= userCart.totalPrice %></span></li>
                 </ul>
             </div>
             <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
