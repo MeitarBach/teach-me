@@ -7,7 +7,7 @@
 	
 <body>
     <!-- header -->
-    <% include partials/logged-header %>
+    <% include partials/admin-header %>
     <!-- //header -->
 
     <!-- single -->
@@ -19,24 +19,32 @@
                     <div class="bootstrap-tab animated wow slideInUp" data-wow-delay=".5s">
                         <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                             <ul id="myTab" class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">User Details</a></li>
-                                <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Login Activity</a></li>
-                                <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Purchases</a></li>
-                                <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Cart</a></li>
+                                <li role="presentation" class="active"><a href="#user-details" id="user-details-tab" role="tab" data-toggle="tab" aria-controls="user-details" aria-expanded="true">User Details</a></li>
+                                <li role="presentation"><a href="#login-activity" role="tab" id="login-activity-tab" data-toggle="tab" aria-controls="login-activity">Login Activity</a></li>
+                                <li role="presentation"><a href="#purchases" role="tab" id="purchases-tab" data-toggle="tab" aria-controls="purchases">Purchases</a></li>
+                                <li role="presentation"><a href="#cart" role="tab" id="cart-tab" data-toggle="tab" aria-controls="cart">Shopping Cart</a></li>
                             
                             </ul>
                             <div id="myTabContent" class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
-                                    <h5>Product Brief Description</h5>
+                                <div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="user-details" aria-labelledby="user-details-tab">
+                                    <h5>User Details</h5>
                                     <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
                                         <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
-                                    <div class="bootstrap-tab-text-grids">
-                                        <h5>Login Activity Description</h5>
-                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
-                                            <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>   
-                                    </div>
+                                <div role="tabpanel" class="tab-pane fade in bootstrap-tab-text" id="login-activity" aria-labelledby="login-activity-tab">
+                                    <h5>Login Activity</h5>
+                                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+                                        <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade in bootstrap-tab-text" id="purchases" aria-labelledby="purchases-tab">
+                                    <h5>Purchase History</h5>
+                                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+                                        <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade in bootstrap-tab-text" id="cart" aria-labelledby="cart-tab">
+                                    <h5>Shopping Cart</h5>
+                                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+                                        <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>
                                 </div>
                             </div>
                         </div>
