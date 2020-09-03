@@ -62,6 +62,7 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
     res.status(200).send({message: "The lesson was added to your cart!"});
 
   } catch (err) {
+    error.log(err);
     next(err);
   }
   
