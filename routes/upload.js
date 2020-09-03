@@ -7,6 +7,7 @@ const redisClient = require('../redis/redisConnector');
 router.get('/', function(req, res) {
   const teacher = req.session.user;
 
+  // Redirect user if he's not a teacher yet
   if (!teacher.isTeacher){
     return res.redirect('/enroll');
   }
@@ -16,12 +17,15 @@ router.get('/', function(req, res) {
 
 router.post('/', async(req, res, next) => {
   const teacher = req.session.user;
-  console.log(teacher);
+  console.log(`User ${teacher.id} is adding a new class...`);
 
+  // Redirect user if he's not a teacher yet
   if (!teacher.isTeacher){
-    res.redirect('/enroll');
+    return res.redirect('/enroll');
   }
 
+
+  // Create Class
   const startTime = new Date(req.body.time).toUTCString().slice(0, -7);
   const instructor = {
     name: `${teacher.firstName} ${teacher.lastName}`,
@@ -39,13 +43,15 @@ router.post('/', async(req, res, next) => {
     price : parseInt(req.body.price)
   };
 
-  console.log(`Creating Class on DB:`);
-  console.log(newClass);
-
   try {
+    // Save class to redis
     await redisClient.lpush('classes', JSON.stringify(newClass));
+
+    console.log('The class was uploaded successfully:')
+    console.log(newClass);
     res.status(201).send({message: "ok"});
   } catch (err) {
+    error.log(err.message);
     next(err);
   }
 

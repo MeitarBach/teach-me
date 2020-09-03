@@ -7,9 +7,7 @@ const upload = require('../controllers/multer');
 /* GET enrollment page. */
 router.get('/', checkSignIn, function(req, res) {
   if (req.session.user.isTeacher) {
-    res.render('enroll', {userID: req.session.user.id});
-
-    // res.redirect('/upload');
+    res.redirect('/upload');
   } else {
     res.render('enroll', {userID: req.session.user.id});
   }
