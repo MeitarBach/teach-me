@@ -16,6 +16,7 @@ router.post('/', async(req, res) => {
     lastName : req.body.lastName,
     email : req.body.email,
     password : req.body.password,
+    imageURL : 'images/users/default.jpg',
     isAdmin : false,
     isTeacher : false
   };

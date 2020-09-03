@@ -12,9 +12,14 @@
 <!-- //header -->
 
 <!-- checkout -->
+<div class="register">
+    <div class="container">
+        <h3 class="animated wow zoomIn" data-wow-delay=".5s">Shopping Cart</h3>
+    </div>
+</div>
 <div class="checkout">
     <div class="container">
-        <h3 class="animated wow slideInLeft" data-wow-delay=".5s">Your shopping cart contains: <span>3 Products</span></h3>
+        <h3 class="animated wow slideInLeft" data-wow-delay=".5s">Your shopping cart contains: <span><%= userCart.items.length %> Products</span></h3>
         <div class="checkout-right animated wow slideInUp" data-wow-delay=".5s">
             <table class="timetable_sub">
                 <thead>
@@ -36,7 +41,7 @@
                     <td class="invert"><%= userCart.items[i-1].subject %></td>
                     <td class="invert"><%= userCart.items[i-1].details %></td>
                     <td class="invert"><%= userCart.items[i-1].startTime %> - <%= userCart.items[i-1].endTime %></td>
-                    <td class="invert-image"><img height="100" width="100" src="images/users/default.jpg" alt="instructor" class="img-responsive" /> <%= userCart.items[i-1].instructor %></td>
+                    <td class="invert-image"><img height="100" width="100" src="images/users/default.jpg" alt="instructor" class="img-responsive" /> <%= userCart.items[i-1].instructor.name %></td>
                     <td class="invert">$<%= userCart.items[i-1].price %></td>
                     <td class="invert">
                         <div class="rem">
