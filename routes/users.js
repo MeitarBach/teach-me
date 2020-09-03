@@ -7,13 +7,16 @@ const DButils = require('../controllers/utilities');
 /* GET store page. */
 router.get('/', checkSignIn, async (req, res, next) => {
   try {
-    let users = await redisClient.lrange("users", 0, -1);
+    let users = await redisClient.hgetall("users");
+    if(users === null){
+      users = [];
+    }
+    users = Object.values(users);
     users = DButils.parseObjectArray(users);
 
     const user = req.session.user;
     
     // if (user.isAdmin) {
-      console.log(users.length);
       res.render('users', {users: users});
     // } else {
     //   res.redirect('/store');
@@ -23,11 +26,16 @@ router.get('/', checkSignIn, async (req, res, next) => {
   }
 });
 
-router.get('/activity-log', checkSignIn, async (req, res, next) => {
-  const userID = req.session.user.id;
+router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
+  const userID = req.params.id;
   try {
-    let cart = await redisClient.lrange("cart", 0, -1);
-    res.render('activityLog');
+    let user = await redisClient.hget('users', userID);
+    user = JSON.parse(user);
+    let userCart = await redisClient.hget("carts", userID);
+    userCart = JSON.parse(userCart);
+
+    res.render('activityLog', {user:user, userCart : userCart});
+
   } catch (err) {
     next(err);
   }

@@ -2,18 +2,55 @@
 <html>
 <head>
     <title>TeachMe | Activity Log</title>
-    <% include partials/head %>
+
+    <meta charset="UTF-8">
+    <link href="/../stylesheets/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/../stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!-- js -->
+    <script src="/../javascripts/jquery.min.js"></script>
+    <!-- //js -->
+    <!-- cart -->
+    <script src="/../javascripts/simpleCart.min.js"></script>
+    <!-- cart -->
+    <!-- for bootstrap working -->
+    <script type="text/javascript" src="/../javascripts/bootstrap-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- //for bootstrap working -->
+
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- animation-effect -->
+    <link href="/../stylesheets/animate.min.css" rel="stylesheet"> 
+    <script src="/../javascripts/wow.min.js"></script>
+    <script>
+    new WOW().init();
+    </script>
+    <!-- //animation-effect -->
+
 </head>
 	
 <body>
     <!-- header -->
     <% include partials/admin-header %>
+
+    <!-- search-scripts -->
+    <script src="/../javascripts//classie.js"></script>
+    <script src="/../javascripts//uisearch.js"></script>
+        <script>
+            new UISearch( document.getElementById( 'sb-search' ) );
+        </script>
+    <!-- //search-scripts -->
+    
+    
     <!-- //header -->
 
     <!-- single -->
         <div class="register">
             <div class="container">
-                <h3 class="animated wow zoomIn" data-wow-delay=".5s">Meit's Activity</h3>
+                <h3 class="animated wow zoomIn" data-wow-delay=".5s"><%= user.firstName %>'s Activity</h3>
                 <div class="col-md-8 single-right">
                     <div class="clearfix"> </div>
                     <div class="bootstrap-tab animated wow slideInUp" data-wow-delay=".5s">
@@ -28,13 +65,20 @@
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="user-details" aria-labelledby="user-details-tab">
                                     <h5>User Details</h5>
-                                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
-                                        <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>
+                                    <p><u>First Name:</u> <%= user.firstName %><br>
+                                        <u>Last Name:</u> <%= user.lastName %><br>
+                                        <u>Email:</u> <%= user.email %><br>
+                                        <u>Is a Teacher:</u> <%= user.isTeacher %><br>
+                                    </p>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade in bootstrap-tab-text" id="login-activity" aria-labelledby="login-activity-tab">
-                                    <h5>Login Activity</h5>
-                                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
-                                        <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>
+                                    <h5>The User Logged In On:</h5>
+                                    <p>
+                                        <% for (let i = 0; i < user.loginActivity.length; i++) { %>
+                                            <%= user.loginActivity[i] %>
+                                            <br>
+                                        <% } %>
+                                    </p>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade in bootstrap-tab-text" id="purchases" aria-labelledby="purchases-tab">
                                     <h5>Purchase History</h5>
