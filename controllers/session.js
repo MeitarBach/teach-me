@@ -4,6 +4,6 @@ function checkSignIn(req, res, next){
     } else {
        res.render('login');
     }
- }
+}
 
  module.exports = checkSignIn;
