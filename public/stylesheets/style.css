@@ -2214,11 +2214,16 @@ label.radio {
 }
 .login-form-grids input[type="text"]{
 	background:url(../images/img-sp.png) no-repeat 5px -259px #fff;
+	margin: 1em 0;
 }
-.login-form-grids input[type="text"]:nth-child(2){
+.login-form-grids #card-number{
+	background:url(../images/credit-card.png) no-repeat 5px #fff;
+	margin: 1em 0;
+}
+/* .login-form-grids input[type="text"]:nth-child(2){
 	background:url(../images/img-sp.png) no-repeat 0px -298px #fff;
 	margin:1em 0;
-}
+} */
 .register-check-box label{
 	font-size:14px;
 	font-weight:500;

@@ -7,7 +7,7 @@ const DButils = require('../controllers/utilities');
 /* GET store page. */
 router.get('/', checkSignIn, async (req, res, next) => {
     const userID = req.session.user.id;
-    console.log(`User ${userID} is in checkout out...`);
+    console.log(`User ${userID} is in checkout...`);
 
     try {
         let userCart = await redisClient.hget('carts', userID);
