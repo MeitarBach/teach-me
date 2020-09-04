@@ -26,12 +26,14 @@ router.get('/', checkSignIn, async (req, res, next) => {
     }
 });
 
+/* DELETE item from shopping cart */
 router.delete('/:lessonID', checkSignIn, async (req, res, next) => {
     const userID = req.session.user.id;
     const lessonID = req.params.lessonID;
     console.log(`User ${userID} is deleting lesson ${lessonID} from his cart...`);
 
     try {
+        // Bring user's cart from redis
         let userCart = await redisClient.hget('carts', userID);
         if (!userCart){
             userCart = {items:[], totalPrice: 0};
@@ -42,7 +44,7 @@ router.delete('/:lessonID', checkSignIn, async (req, res, next) => {
         console.log('Cart before deleting the lesson:');
         console.log(userCart);
 
-        
+        // Delete the lesson from user's cart
         for (let i = 0 ; i < userCart.items.length ; i++) {
             if (userCart.items[i].id === lessonID){
                 userCart.totalPrice -= userCart.items[i].price;
@@ -53,10 +55,11 @@ router.delete('/:lessonID', checkSignIn, async (req, res, next) => {
         console.log('Cart after deleting the lesson:');
         console.log(userCart);
 
+        // Store updated cart on redis
         await redisClient.hset('carts', userID, JSON.stringify(userCart));
-
         console.log('Successfully updated cart on redis!')
 
+        // Send resopnse to user
         res.status(200).send({message: "The lesson was successfully deleted from your cart!"});
     } catch (err) {
         error.log(err.message);
