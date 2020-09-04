@@ -19,7 +19,7 @@ body a:hover{
 	cursor: pointer;
 }
 /*-- header --*/
-.header-grid-left ul li a,.new-collections-grid1-image-pos a,.new-collections-grid1 h4 a,.login a,.register-home a,.checkout-right-basket a,.bootstrap-tab-text-grid-right ul li a,.occasion-cart a,input[type="submit"],.mail-grid-right1 ul li a,.categories ul li a,.new-products-grid-right-add-cart p a,.new-products-grid-right h4 a,.products-right-grid1-add-cart p a,.timer-grid-left h3 a,.new-collections-grid1-left p a,.copy-right p a,.footer-grid-sub-grid-right h4 a,input[type="submit"],.footer-grid ul li a{
+.header-grid-left ul li a,.new-collections-grid1-image-pos a,.new-collections-grid1 h4 a,.login a,.register-home a,.checkout-right-basket a,.checkout-left-basket h4,.bootstrap-tab-text-grid-right ul li a,.occasion-cart a,input[type="submit"],.mail-grid-right1 ul li a,.categories ul li a,.new-products-grid-right-add-cart p a,.new-products-grid-right h4 a,.products-right-grid1-add-cart p a,.timer-grid-left h3 a,.new-collections-grid1-left p a,.copy-right p a,.footer-grid-sub-grid-right h4 a,input[type="submit"],.footer-grid ul li a{
 	transition:.5s ease-in-out;
 	-webkit-transition:.5s ease-in-out;
 	-moz-transition:.5s ease-in-out;
@@ -2100,7 +2100,7 @@ label.radio {
 	background:#F7F7F9;
 	margin:3em auto 0;
 }
-.login-form-grids input[type="email"],.login-form-grids input[type="password"],.login-form-grids input[type="text"], .login-form-grids input[type="number"], .login-form-grids input[type="button"], .login-form-grids textarea, .upload-image span, .time-slots, .login-form-grids p{
+.login-form-grids input[type="email"],.login-form-grids input[type="password"],.login-form-grids input[type="text"], .login-form-grids input[type="number"], .login-form-grids input[type="button"], .login-form-grids input[type="month"], .login-form-grids textarea, .upload-image span, .time-slots, .login-form-grids p, label{
 	outline: none;
     border: 1px solid #DBDBDB;
     padding: 10px 10px 10px 45px;
@@ -2112,9 +2112,17 @@ label.radio {
 .login-form-grids input[type="email"]{
 	background:url(../images/img-sp.png) no-repeat 5px -182px #fff;
 }
-.login-form-grids input[type="password"]{
+.login-form-grids input[type="password"], #cvv{
 	background:url(../images/img-sp.png) no-repeat 5px -220px #fff;
 	margin:1em 0 0;
+}
+#cvv, #expiration-date {
+	display: inline-block;
+	width: 48%;
+}
+
+.login-form-grids input[type="month"]{
+	width: 50%;
 }
 
 .login-form-grids textarea{
@@ -2122,8 +2130,12 @@ label.radio {
 	padding: 0;
 	height: 8em;
 }
-.upload-image span, .time-slots {
+.upload-image span, .time-slots{
 	border: 0;
+}
+.login-form-grids label {
+	border: 0;
+	padding:0;
 }
 .forgot {
     margin: 1.5em 0 0;
@@ -2438,7 +2450,7 @@ td.invert-image img {
 	background:#212121;
 	text-decoration:none;
 }
-.checkout-right-basket a:hover{
+.checkout-right-basket a:hover, .checkout-left-basket h4:hover{
 	background:#D8703F;
 }
 .checkout-right-basket a span {

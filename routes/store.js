@@ -3,7 +3,6 @@ const router = express.Router();
 const checkSignIn = require('../controllers/session');
 const redisClient = require('../redis/redisConnector');
 const DButils = require('../controllers/utilities');
-const { NotExtended } = require('http-errors');
 
 /* GET store page. */
 router.get('/', checkSignIn, async (req, res, next) => {

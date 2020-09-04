@@ -2,7 +2,10 @@
 <html>
 <head>
     <title>TeachMe | Shopping Cart</title>
-	<% include partials/head %>
+    <% include partials/head %>
+    <!-- JS -->
+	<script type="text/javascript" src="../javascripts/cart.js"></script>
+    <!-- JS -->
 
 </head>
 	
@@ -14,7 +17,7 @@
 <!-- checkout -->
 <div class="register">
     <div class="container">
-        <h3 class="animated wow zoomIn" data-wow-delay=".5s">Shopping Cart</h3>
+        <h3 class="animated wow zoomIn" data-wow-delay=".5s"><%= session.user.firstName %>'s Shopping Cart</h3>
     </div>
 </div>
 <div class="checkout">
@@ -41,7 +44,7 @@
                     <td class="invert"><%= userCart.items[i-1].subject %></td>
                     <td class="invert"><%= userCart.items[i-1].details %></td>
                     <td class="invert"><%= userCart.items[i-1].startTime %> - <%= userCart.items[i-1].endTime %></td>
-                    <td class="invert-image"><img height="100" width="100" src="images/users/default.jpg" alt="instructor" class="img-responsive" /> <%= userCart.items[i-1].instructor.name %></td>
+                    <td class="invert-image"><img height="100" width="100" src="<%= userCart.items[i-1].instructor.imageURL %>" alt="instructor" class="img-responsive" /> <%= userCart.items[i-1].instructor.name %></td>
                     <td class="invert">$<%= userCart.items[i-1].price %></td>
                     <td class="invert">
                         <div class="rem">
@@ -50,7 +53,7 @@
                         <script>$(document).ready(function(c) {
                             $('.close<%= i %>').on('click', function(c){
                                 $('.rem<%= i %>').fadeOut('slow', function(c){
-                                    $('.rem<%= i %>').remove();
+                                    $('.rem<%= i %>').remove(deleteLesson('<%= userCart.items[i-1].id %>'));
                                 });
                                 });	  
                             });
@@ -62,7 +65,7 @@
         </div>
         <div class="checkout-left">	
             <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
-                <h4>Checkout</h4>
+                <a href="/checkout"><h4>Checkout</h4></a>
                 <ul>
                     <% for (let i = 0; i < userCart.items.length; i++) { %>
                         <li><%= userCart.items[i].title %><i></i> <span>$<%= userCart.items[i].price %></span></li>
@@ -83,5 +86,6 @@
 <!-- footer -->
 <% include partials/footer %>
 <!-- //footer -->
+
 </body>
 </html>
