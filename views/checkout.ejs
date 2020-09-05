@@ -62,8 +62,8 @@
 					<input type="text" id="card-holder" placeholder="Card Holder*" required>
 					<input type="text" id="card-number" placeholder="Credit Card Number*" required>
 					<label for="expiration-date">Expiration Date</label><input type="month" id="expiration-date" placeholder="Expiration Month" required>
-                    <input type="number" id="cvv" placeholder="CVV*" required>
-                    <span id="incorrect-details"></span>
+                    <input type="number" id="cvv" placeholder="CVV*" required><br><br>
+                    <div class="alert alert-danger hidden" role="alert" id="incorrect-details"></div>
 					<input type="submit" id="confirm" value="Confirm Purchase">
 				</form>
 			</div>
@@ -100,7 +100,6 @@
 <!-- javascript -->	
 <script type="text/javascript" src="../javascripts/checkout.js"></script>
 <script src="../javascripts/jquery.payform.min.js" charset="utf-8"></script>
-<script src="../javascripts/payment.validation.js"></script>
 <!-- //javascript -->
 </body>
 </html>
