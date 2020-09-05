@@ -34,10 +34,10 @@ router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
     
     let userCart = await redisClient.hget("carts", userID);
     if (!userCart){
-      userCart = {items:[], totalPrice: 0};
-  } else {
-      userCart = JSON.parse(userCart);
-  }
+            userCart = {items:[], totalPrice: 0};
+        } else {
+            userCart = JSON.parse(userCart);
+        }
 
     res.render('activityLog', {user:user, userCart : userCart});
 
