@@ -25,20 +25,32 @@
                     </div>
                 <div class="accordion-item-body">
                     <div class="accordion-item-body-content">
+                        <u><h3>Classes</h3></u><br>
                         <% for (let j = 0; j < userPurchases[i].items.length; j++) { %>
-                            <u>Class Title:</u> <%= userPurchases[i].items[j].title %><br>
-                            <u>Instructor's Name:</u> <%= userPurchases[i].items[j].instructor.name %><br>
-                            <u>price:</u> <%= userPurchases[i].items[j].price %> $<br>
+                            <div class="purchase-row">
+                                <div class="purchase-column">
+                                    <p>Title:</p>
+                                    <p>Instructor's Name:</p>
+                                    <p>Price:</p>
+    
+                                </div>
+                                <div class="purchase-column">
+                                  <p><%= userPurchases[i].items[j].title %></p>
+                                  <p><%= userPurchases[i].items[j].instructor.name %></p>
+                                  <p><%= userPurchases[i].items[j].price %> $</p>
+                                </div>
+                              </div>
+                              <br>
                         <% } %>
                         <hr style="width:50%;text-align:left;margin-left:0">
-                        Total price : <%= userPurchases[i].totalPrice %>
+                        Total price : $<%= userPurchases[i].totalPrice %>
                     </div>
                 </div>
                 <% } %>
             </div>
         </div> 
         <!-- scripts -->
-        <script type="text/javascript" src="/../javascripts/accordion.js" defer></script>
+        <script type="text/javascript" src="../javascripts/accordion.js" defer></script>
         <!-- /scripts -->
 
     </body>
