@@ -31,6 +31,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
 
 router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
   const userID = req.params.id;
+  const userPurchases = req.session.user.purchaseHistory;
   try {
     let user = await redisClient.hget('users', userID);
     user = JSON.parse(user);
@@ -42,7 +43,7 @@ router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
             userCart = JSON.parse(userCart);
         }
 
-    res.render('activityLog', {user:user, userCart : userCart});
+    res.render('activityLog', {user : user, userCart : userCart, userPurchases: userPurchases});
 
   } catch (err) {
     next(err);
