@@ -7,7 +7,8 @@ const DButils = require('../controllers/utilities');
 /* GET store page. */
 router.get('/', checkSignIn, async (req, res, next) => {
   try{
-    let lessons = await redisClient.lrange("classes", 0, -1);
+    // let lessons = await redisClient.lrange("classes", 0, -1);
+    let lessons = await DButils.getSetValues('lessons');
     lessons = DButils.splitArrayToChunks(lessons, 3);
     res.render('store', {lessons: lessons});
   } catch (err) {
@@ -42,12 +43,13 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
     }
 
     // Find the lesson item
-    const lessons = await redisClient.lrange('classes', 0, -1);
+    // const lessons = await redisClient.lrange('classes', 0, -1);
+    const lessons = await DButils.getSetValues('lessons');
     let lesson = lessons.find( lesson => {
-      lesson = JSON.parse(lesson);
+      // lesson = JSON.parse(lesson);
       return lesson.id === lessonID;
     });
-    lesson = JSON.parse(lesson);
+    // lesson = JSON.parse(lesson);
 
     // Push it to the user's cart
     console.log(`Adding lesson: ${lessonID} to the user's cart!`);

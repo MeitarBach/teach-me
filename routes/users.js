@@ -7,12 +7,15 @@ const DButils = require('../controllers/utilities');
 /* GET store page. */
 router.get('/', checkSignIn, async (req, res, next) => {
   try {
-    let users = await redisClient.hgetall("users");
-    if(users === null){
-      users = [];
-    }
-    users = Object.values(users);
-    users = DButils.parseObjectArray(users);
+    // let users = await redisClient.hgetall("users");
+    // if(users === null){
+    //   users = [];
+    // }
+    // users = Object.values(users);
+    // users = DButils.parseObjectArray(users);
+    
+    let users = await DButils.getSetValues("users");
+    console.log(users);
 
     const user = req.session.user;
     

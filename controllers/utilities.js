@@ -1,7 +1,8 @@
+const redisClient = require('../redis/redisConnector');
 const DButils = {}
 
 DButils.splitArrayToChunks = (arr, chunkSize) => {
-    arr = DButils.parseObjectArray(arr);
+    // arr = DButils.parseObjectArray(arr);
     let resultArr = [];
     let i, arrChunk;
     for (i=0 ; i < arr.length ; i += chunkSize) {
@@ -19,6 +20,15 @@ DButils.parseObjectArray = (arr) => {
     });
   
     return resultArr;
+}
+
+DButils.getSetValues = async (set) => {
+  let values = await redisClient.hgetall(set);
+  if(values === null){
+    values = [];
+  } 
+  values = Object.values(values);
+  return DButils.parseObjectArray(values);
 }
 
 module.exports = DButils;

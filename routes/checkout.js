@@ -63,6 +63,12 @@ router.post('/', checkSignIn, async (req, res, next) =>{
         console.log(`Sucssessfully saved order to redis:`);
         console.log(order);
 
+        // Move accuired lessons from lessons list to history list
+        userCart.items.forEach(lesson => {
+            redisClient.hset('lessonsHistory', lesson.id, JSON.stringify(lesson));
+            redisClient.hdel('lessons', lesson.id);
+        });
+
         // Empty user's cart
         userCart = {items:[], totalPrice: 0};
         await redisClient.hset('carts', user.id, JSON.stringify(userCart));

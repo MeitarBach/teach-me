@@ -45,7 +45,7 @@ router.post('/', async(req, res, next) => {
 
   try {
     // Save class to redis
-    await redisClient.lpush('classes', JSON.stringify(newClass));
+    await redisClient.hset('lessons', newClass.id, JSON.stringify(newClass));
 
     console.log('The class was uploaded successfully:')
     console.log(newClass);

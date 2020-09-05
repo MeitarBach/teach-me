@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const redisClient = require('../redis/redisConnector');
 const shortid = require('shortid');
+const DButils = require('../controllers/utilities');
 
 /* GET register page. */
 router.get('/', function(req, res) {
@@ -24,17 +25,20 @@ router.post('/', async(req, res, next) => {
   };
 
   try {
-    let users = await redisClient.hgetall('users');
+    // let users = await redisClient.hgetall('users');
     
-    if(users === null){
-      users = [];
-    }
+    // if(users === null){
+    //   users = [];
+    // }
     
-    users = Object.values(users);
-    console.log(users);
+    // users = Object.values(users);
+    // console.log(users);
+
+    let users = await DButils.getSetValues("users");
     
     const userExists = users.some((currentUser) => {
-      return JSON.parse(currentUser).email.toLowerCase() === user.email.toLowerCase();
+      // return JSON.parse(currentUser).email.toLowerCase() === user.email.toLowerCase();
+      return currentUser.email.toLowerCase() === user.email.toLowerCase();
     });
 
     if (userExists) {
