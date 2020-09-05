@@ -45,6 +45,6 @@ router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
     next(err);
   }
 
-})
+});
 
 module.exports = router;
