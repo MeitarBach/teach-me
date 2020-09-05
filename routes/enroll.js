@@ -42,7 +42,7 @@ router.put('/', checkSignIn, upload.single('image'), async (req, res, next) =>{
     // Send response to client
     res.status(201).send({message: 'ok'});
   } catch (err) {
-    error.log(err.message);
+    console.log(err.message);
     next(err);
   }
 });

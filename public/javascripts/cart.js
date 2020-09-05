@@ -5,7 +5,6 @@ async function deleteLesson(lessonID){
         const result = await response.json();
         
         if (response.status === 200) {
-            alert(result.message);
             location.reload();
         } else if (response.status === 500) {
             throw new Error("There was an error on the server");

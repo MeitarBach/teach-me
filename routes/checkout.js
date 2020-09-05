@@ -22,7 +22,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
 
         res.render('checkout', {totalPrice: userCart.totalPrice});
     } catch (err) {
-        error.log(err.message);
+        console.log(err.message);
         next(err);
     }
 });
@@ -77,7 +77,7 @@ router.post('/', checkSignIn, async (req, res, next) =>{
         // Send response to user
         res.status(200).send({message: 'Succesfully completed your order! Enjoy your lessons!'});
     } catch (err) {
-        error.log(err);
+        console.log(err);
         next(err);
     } 
 });

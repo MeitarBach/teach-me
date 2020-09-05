@@ -21,7 +21,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
 
         res.render('cart', {userCart});
     } catch (err) {
-        error.log(err.message);
+        console.log(err.message);
         next(err);
     }
 });
@@ -62,7 +62,7 @@ router.delete('/:lessonID', checkSignIn, async (req, res, next) => {
         // Send resopnse to user
         res.status(200).send({message: "The lesson was successfully deleted from your cart!"});
     } catch (err) {
-        error.log(err.message);
+        console.log(err.message);
         next(err);
     }
 });

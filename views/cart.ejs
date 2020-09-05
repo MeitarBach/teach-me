@@ -48,10 +48,10 @@
                     <td class="invert">$<%= userCart.items[i-1].price %></td>
                     <td class="invert">
                         <div class="rem">
-                            <div class="close<%= i %>"> </div>
+                            <div class="close" id="close<%= i %>"> </div>
                         </div>
                         <script>$(document).ready(function(c) {
-                            $('.close<%= i %>').on('click', function(c){
+                            $('#close<%= i %>').on('click', function(c){
                                 $('.rem<%= i %>').fadeOut('slow', function(c){
                                     $('.rem<%= i %>').remove(deleteLesson('<%= userCart.items[i-1].id %>'));
                                 });
