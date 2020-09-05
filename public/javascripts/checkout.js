@@ -25,11 +25,50 @@ $(function() {
         var isCvvValid = $.payform.validateCardCVC(CVV.val());
 
         if(owner.val().length < 5 || !isCardValid || !isCvvValid){
-            document.getElementById('incorrect-details').innerHTML = 'Card details are incorrect!';
+            const incorrectDetails = document.getElementById('incorrect-details');
+            incorrectDetails.innerHTML = '* Card details are incorrect!';
+            incorrectDetails.className = 'alert alert-danger';
         } else {
-            // Everything is correct. Add your form submission code here.
-            document.getElementById('incorrect-details').innerHTML = '';
-            alert("Everything is correct");
+            const incorrectDetails = document.getElementById('incorrect-details');
+            incorrectDetails.innerHTML = '';
+            incorrectDetails.className = 'alert alert-danger hidden';
+            postPayment();
         }
     });
 });
+
+async function postPayment(){
+    const cardHolder = document.getElementById('card-holder').value;
+    const cardNumber = document.getElementById('card-number').value;
+    const expirationDate = document.getElementById('expiration-date').value;
+    const cvv = document.getElementById('cvv').value;
+
+    const payment = {
+        cardHolder,
+        cardNumber,
+        expirationDate,
+        cvv
+    }
+
+    try {
+        const response = await fetch('/checkout', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payment)
+        });
+
+        const result = await response.json();
+        
+        if (response.status === 500) {
+            throw new Error("There was an error on the server");
+        } else {
+            alert(result.message);
+            window.location.href = "store";
+        }
+
+    } catch (err) {
+        console.log(err);
+    }
+}
