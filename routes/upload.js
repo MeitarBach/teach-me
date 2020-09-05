@@ -51,7 +51,7 @@ router.post('/', async(req, res, next) => {
     console.log(newClass);
     res.status(201).send({message: "ok"});
   } catch (err) {
-    error.log(err.message);
+    console.log(err.message);
     next(err);
   }
 

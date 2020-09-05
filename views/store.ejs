@@ -115,7 +115,7 @@
 <!-- //header -->
 
 <!-- banner -->
-	<div class="banner">
+	<!-- <div class="banner">
 		<div class="container">
 			<div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
         		<h3>Learn Everything Anywhere</h3><br>
@@ -131,7 +131,7 @@
 					</script> 
 			</div>
 		</div>
-	</div>
+	</div> -->
 <!-- //banner -->
 <!-- collections -->
 <div class="new-collections">
@@ -147,15 +147,15 @@
                 <div class="col-md-4">
                     <div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
                         <div class="new-collections-grid1-image">
-                            <div class="lesson-image"><a href="single.html" class="product-image"><img width="150" height="150" src="<%= lessons[i][j].instructor.imageURL %>" alt=" " class="img-responsive" /></a>
+                            <div class="lesson-image"><a href="/store/lesson/<%= lessons[i][j].id %>" class="product-image"><img width="150" height="150" src="<%= lessons[i][j].instructor.imageURL %>" alt=" " class="img-responsive" /></a>
                             </div>
                                 <div class="new-collections-grid1-image-pos">
-                                <a href="single.html">Quick View</a>
+                                <a href="/store/lesson/<%= lessons[i][j].id %>">Quick View</a>
                             </div>
                             <div class="new-collections-grid1-right">
                             </div>
                         </div>
-                        <h4><a href="single.html"><%= lessons[i][j].title %></a></h4>
+                        <h4><a href="/store/lesson/<%= lessons[i][j].id %>"><%= lessons[i][j].title %></a></h4>
                         <p>Instructor: <%= lessons[i][j].instructor.name %></p>
                         <p>Time: <%= lessons[i][j].startTime%> - <%= lessons[i][j].endTime %></p>
                         <div class="new-collections-grid1-left simpleCart_shelfItem">
@@ -167,112 +167,27 @@
             </div>
             <div class="clearfix"> </div>
         <% } %>
-
-
-        <!-- <div class="new-collections-grids">
-            <div class="col-md-4">
-                <div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-                    <div class="new-collections-grid1-image">
-                        <div class="lesson-image"><a href="single.html" class="product-image"><img src="images/guitar-Efi.Jpeg" alt=" " class="img-responsive" /></a>
-                        </div>
-                            <div class="new-collections-grid1-image-pos">
-                            <a href="single.html">Quick View</a>
-                        </div>
-                        <div class="new-collections-grid1-right">
-                        </div>
-                    </div>
-                    <h4><a href="single.html">Guitar Class With Efi</a></h4>
-                    <p>Vel illum qui dolorem eum fugiat.</p>
-                    <div class="new-collections-grid1-left simpleCart_shelfItem">
-                        <p><span class="item_price">$250</span><a class="item_add" href="#">add to cart </a></p>
-                    </div>
-				</div>
-			</div>
-
-			<div class="col-md-4">
-                <div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-                    <div class="new-collections-grid1-image">
-                        <div class="lesson-image"><a href="single.html" class="product-image"><img src="images/guitar-Efi.Jpeg" alt=" " class="img-responsive" /></a>
-                        </div>
-                            <div class="new-collections-grid1-image-pos">
-                            <a href="single.html">Quick View</a>
-                        </div>
-                        <div class="new-collections-grid1-right">
-                        </div>
-                    </div>
-                    <h4><a href="single.html">Guitar Class With Efi</a></h4>
-                    <p>Vel illum qui dolorem eum fugiat.</p>
-                    <div class="new-collections-grid1-left simpleCart_shelfItem">
-                        <p><span class="item_price">$250</span><a class="item_add" href="#">add to cart </a></p>
-                    </div>
-				</div>
-			</div>
-
-			<div class="col-md-4">
-                <div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-                    <div class="new-collections-grid1-image">
-                        <div class="lesson-image"><a href="single.html" class="product-image"><img src="images/guitar-Efi.Jpeg" alt=" " class="img-responsive" /></a>
-                        </div>
-                            <div class="new-collections-grid1-image-pos">
-                            <a href="single.html">Quick View</a>
-                        </div>
-                        <div class="new-collections-grid1-right">
-                        </div>
-                    </div>
-                    <h4><a href="single.html">Guitar Class With Efi</a></h4>
-                    <p>Vel illum qui dolorem eum fugiat.</p>
-                    <div class="new-collections-grid1-left simpleCart_shelfItem">
-                        <p><span class="item_price">$250</span><a class="item_add" href="#">add to cart </a></p>
-                    </div>
-				</div>
-			</div>
-
-            <div class="clearfix"> </div>
-		</div>
-		
-		<div class="new-collections-grids">
-            <div class="col-md-4">
-                <div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-                    <div class="new-collections-grid1-image">
-                        <div class="lesson-image"><a href="single.html" class="product-image"><img src="images/guitar-Efi.Jpeg" alt=" " class="img-responsive" /></a>
-                        </div>
-                            <div class="new-collections-grid1-image-pos">
-                            <a href="single.html">Quick View</a>
-                        </div>
-                        <div class="new-collections-grid1-right">
-                        </div>
-                    </div>
-                    <h4><a href="single.html">Guitar Class With Efi</a></h4>
-                    <p>Vel illum qui dolorem eum fugiat.</p>
-                    <div class="new-collections-grid1-left simpleCart_shelfItem">
-                        <p><span class="item_price">$250</span><a class="item_add" href="#">add to cart </a></p>
-                    </div>
-				</div>
-			</div>
-
-			<div class="col-md-4">
-                <div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-                    <div class="new-collections-grid1-image">
-                        <div class="lesson-image"><a href="single.html" class="product-image"><img src="images/guitar-Efi.Jpeg" alt=" " class="img-responsive" /></a>
-                        </div>
-                            <div class="new-collections-grid1-image-pos">
-                            <a href="single.html">Quick View</a>
-                        </div>
-                        <div class="new-collections-grid1-right">
-                        </div>
-                    </div>
-                    <h4><a href="single.html">Guitar Class With Efi</a></h4>
-                    <p>Vel illum qui dolorem eum fugiat.</p>
-                    <div class="new-collections-grid1-left simpleCart_shelfItem">
-                        <p><span class="item_price">$250</span><a class="item_add" href="#">add to cart </a></p>
-                    </div>
-				</div>
-			</div>
-            <div class="clearfix"> </div>
-		</div> -->
-		
     </div>
 </div>
+<!-- banner -->
+<!-- <div class="banner">
+    <div class="container">
+        <div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
+            <h3>Learn Everything Anywhere</h3><br>
+            <h4>Expand Your Skills Set And Start Learning</h4><br>
+            <div class="wmuSlider example1">
+            </div>
+        </div>
+    </div>
+</div>
+                <script src="../javascripts/jquery.wmuSlider.js"></script> 
+                <script>
+                    $('.example1').wmuSlider();         
+                </script> 
+        </div>
+    </div>
+</div> -->
+<!-- //banner -->
 <!-- //collections -->
 
 <!-- footer -->

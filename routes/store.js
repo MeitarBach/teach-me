@@ -12,10 +12,31 @@ router.get('/', checkSignIn, async (req, res, next) => {
     lessons = DButils.splitArrayToChunks(lessons, 3);
     res.render('store', {lessons: lessons});
   } catch (err) {
+    console.log(err);
     next(err);
   }
 });
 
+router.get('/lesson/:lessonID', checkSignIn, async (req, res, next)=>{
+  try{
+    // Get lesson from redis
+    let lesson = await redisClient.hget('lessons', req.params.lessonID);
+    if(!lesson){
+      lesson = await redisClient.hget('lessonsHistory', req.params.lessonID);
+    }
+    if(!lesson){
+      console.log(req.params.lessonID);
+      throw new Error(`Lesson ${req.params.lessonID} Doesn't exist!`);
+    }
+    lesson = JSON.parse(lesson);
+
+    // Render lesson for user
+    res.render('lesson', {lesson: lesson});
+  } catch (err) {
+    console.log(err.message);
+    next(err);
+  }
+});
 
 /* GET add item to cart */
 router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
@@ -63,7 +84,7 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
     res.status(200).send({message: "The lesson was added to your cart!"});
 
   } catch (err) {
-    error.log(err);
+    console.log(err);
     next(err);
   }
   
