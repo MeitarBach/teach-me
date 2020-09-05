@@ -18,8 +18,8 @@
             </div>
         </div>
         <div class="accordion">
+            <% for (let i = 0; i < userPurchases.length; i++) { %>
             <div class="accordion-item">
-                <% for (let i = 0; i < userPurchases.length; i++) { %>
                     <div class="accordion-item-header">
                         Order No. <%= userPurchases[i].orderID %> - <%=  userPurchases[i].checkoutDate  %>
                     </div>
@@ -39,15 +39,15 @@
                                   <p><%= userPurchases[i].items[j].instructor.name %></p>
                                   <p><%= userPurchases[i].items[j].price %> $</p>
                                 </div>
-                              </div>
+                            </div>
                               <br>
                         <% } %>
                         <hr style="width:50%;text-align:left;margin-left:0">
                         Total price : $<%= userPurchases[i].totalPrice %>
                     </div>
                 </div>
-                <% } %>
             </div>
+            <% } %>
         </div> 
         <!-- scripts -->
         <script type="text/javascript" src="../javascripts/accordion.js" defer></script>

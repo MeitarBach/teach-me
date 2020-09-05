@@ -322,6 +322,8 @@ a.simpleCart_empty {
     display: flex;
     align-items: center;
 	justify-content: center;
+	background: rgb(0, 0, 0);
+  	background: rgba(0, 0, 0, 0.5);
 	}
 
 .banner::before {    
@@ -339,6 +341,7 @@ a.simpleCart_empty {
 	font-size:5em;
 	color:rgb(255, 255, 255);
 	margin:0;
+	
 }
 .banner-info {
 	opacity: 1;

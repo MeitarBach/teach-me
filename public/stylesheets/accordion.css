@@ -1,16 +1,16 @@
-/* @import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #34495e;
+  background-color: #ffffff;
   color: #fff;
 }
-h1 {
+/* h1 {
   text-align: center;
   margin: 2rem 0;
   font-size: 2.5rem;
@@ -24,12 +24,12 @@ h1 {
 .accordion {
   width: 90%;
   max-width: 1000px;
-  margin: 2em auto;
+  margin: 2rem auto;
 }
 .accordion-item {
   background-color: rgb(245, 147, 90);
   color: rgb(255, 255, 255);
-  margin: 30px 0;
+  margin: 1rem 0;
   border-radius: 0.5rem;
   box-shadow: 0 2px 5px 0 rgba(253, 250, 250, 0.25);
 }
