@@ -7,6 +7,7 @@ const logger = require('morgan');
 const RedisStore = require('connect-redis')(session);
 const redisClient = require('./redis/redisConnector');
 
+
 // Routers
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
@@ -37,6 +38,7 @@ app.use(session({
   cookie: { secure: false, maxAge: 60 * 30 * 1000},
   store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient, ttl: 0.5 * 60 * 60 }), // 0.5 hour sessions
 }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {

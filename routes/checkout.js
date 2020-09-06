@@ -4,6 +4,9 @@ const shortid = require('shortid');
 const checkSignIn = require('../controllers/session');
 const redisClient = require('../redis/redisConnector');
 const DButils = require('../controllers/utilities');
+const rateLimit = require('../controllers/protection');
+
+router.use(rateLimit());
 
 /* GET checkout page. */
 router.get('/', checkSignIn, async (req, res, next) => {
@@ -11,6 +14,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
     console.log(`User ${userID} is in checkout...`);
 
     try {
+        // Get user's shopping cart
         let userCart = await redisClient.hget('carts', userID);
         if (!userCart){
             userCart = {items:[], totalPrice: 0};

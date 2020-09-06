@@ -3,6 +3,9 @@ const router = express.Router();
 const checkSignIn = require('../controllers/session');
 const redisClient = require('../redis/redisConnector');
 const upload = require('../controllers/multer');
+const rateLimit = require('../controllers/protection');
+
+router.use(rateLimit());
 
 /* GET enrollment page. */
 router.get('/', checkSignIn, function(req, res) {

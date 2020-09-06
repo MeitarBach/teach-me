@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const redisClient = require('../redis/redisConnector');
 const DButils = require('../controllers/utilities');
+const rateLimit = require('../controllers/protection');
+
+router.use(rateLimit());
 
 /* GET login page. */
 router.get('/', function(req, res) {

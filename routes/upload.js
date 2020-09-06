@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const shortid = require('shortid');
 const redisClient = require('../redis/redisConnector');
+const rateLimit = require('../controllers/protection');
+
+router.use(rateLimit());
 
 /* GET upload class page. */
 router.get('/', function(req, res) {

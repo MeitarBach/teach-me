@@ -3,6 +3,9 @@ const router = express.Router();
 const redisClient = require('../redis/redisConnector');
 const shortid = require('shortid');
 const DButils = require('../controllers/utilities');
+const rateLimit = require('../controllers/protection');
+
+router.use(rateLimit());
 
 /* GET register page. */
 router.get('/', function(req, res) {
