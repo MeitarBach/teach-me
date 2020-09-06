@@ -1,12 +1,13 @@
 const redis = require('promise-redis')();
+const debug = require('debug')('teach-me:redis-connector');
 const client = redis.createClient();
 
 client.on('connect', function() {
-    console.log('Redis client connected');
+    debug('Redis client connected');
 });
 
 client.on('error', function (err) {
-    console.log('Something went wrong ' + err);
+    debug('Something went wrong ' + err);
 });
 
 module.exports = client;
