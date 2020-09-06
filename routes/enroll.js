@@ -1,4 +1,5 @@
 const express = require('express');
+const debug = require('debug')('teach-me:enroll');
 const router = express.Router();
 const checkSignIn = require('../controllers/session');
 const redisClient = require('../redis/redisConnector');
@@ -19,12 +20,12 @@ router.get('/', checkSignIn, function(req, res) {
 /* PUT user as a teacher */
 router.put('/', checkSignIn, upload.single('image'), async (req, res, next) =>{
   const user = req.session.user;
-  console.log(`User ${user.id} is trying to become a teacher...`);
+  debug(`User ${user.id} is trying to become a teacher...`);
 
   try {
     // Check if the user is already a teacher
     if (user.isTeacher){
-      console.log('This user is already a teacher!')
+      debug('This user is already a teacher!')
       return res.status(409).send({message: "You are already a teacher!"});
     }
 
@@ -39,13 +40,13 @@ router.put('/', checkSignIn, upload.single('image'), async (req, res, next) =>{
 
     // Save updated user to redis
     await redisClient.hmset('users', user.id, JSON.stringify(user));
-    console.log(`Succsessfully updated user as a teacher`);
-    console.log(user);
+    debug(`Succsessfully updated user as a teacher`);
+    debug(user);
 
     // Send response to client
     res.status(201).send({message: 'ok'});
   } catch (err) {
-    console.log(err.message);
+    debug(err.message);
     next(err);
   }
 });

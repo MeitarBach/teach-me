@@ -1,4 +1,5 @@
 const express = require('express');
+const debug = require('debug')('teach-me:checkout');
 const router = express.Router();
 const shortid = require('shortid');
 const checkSignIn = require('../controllers/session');
@@ -11,7 +12,7 @@ router.use(rateLimit());
 /* GET checkout page. */
 router.get('/', checkSignIn, async (req, res, next) => {
     const userID = req.session.user.id;
-    console.log(`User ${userID} is in checkout...`);
+    debug(`User ${userID} is in checkout...`);
 
     try {
         // Get user's shopping cart
@@ -22,11 +23,11 @@ router.get('/', checkSignIn, async (req, res, next) => {
             userCart = JSON.parse(userCart);
         }
 
-        console.log(userCart);
+        debug(userCart);
 
         res.render('checkout', {totalPrice: userCart.totalPrice});
     } catch (err) {
-        console.log(err.message);
+        debug(err.message);
         next(err);
     }
 });
@@ -34,7 +35,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
 /* POST order details */
 router.post('/', checkSignIn, async (req, res, next) =>{
     const user = req.session.user;
-    console.log(`User ${user.id} confirmed his purchase...`);
+    debug(`User ${user.id} confirmed his purchase...`);
 
     try {
         // Get user's shopping cart
@@ -50,8 +51,8 @@ router.post('/', checkSignIn, async (req, res, next) =>{
         userCart.orderID = shortid.generate();
         user.purchaseHistory.unshift(userCart);
         await redisClient.hset('users', user.id, JSON.stringify(user));
-        console.log(`Added user's cart to his purchase history:`);
-        console.log(user.purchaseHistory);
+        debug(`Added user's cart to his purchase history:`);
+        debug(user.purchaseHistory);
 
 
         // Save order with payment details to redis
@@ -64,8 +65,8 @@ router.post('/', checkSignIn, async (req, res, next) =>{
         }
         Object.assign(order, userCart);
         await redisClient.hset('orders', order.orderID, JSON.stringify(order));
-        console.log(`Sucssessfully saved order to redis:`);
-        console.log(order);
+        debug(`Sucssessfully saved order to redis:`);
+        debug(order);
 
         // Move accuired lessons from lessons list to history list
         userCart.items.forEach(lesson => {
@@ -76,12 +77,12 @@ router.post('/', checkSignIn, async (req, res, next) =>{
         // Empty user's cart
         userCart = {items:[], totalPrice: 0};
         await redisClient.hset('carts', user.id, JSON.stringify(userCart));
-        console.log(`Successfully emptied user's cart`);
+        debug(`Successfully emptied user's cart`);
 
         // Send response to user
         res.status(200).send({message: 'Succesfully completed your order! Enjoy your lessons!'});
     } catch (err) {
-        console.log(err);
+        debug(err);
         next(err);
     } 
 });

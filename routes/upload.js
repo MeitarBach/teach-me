@@ -1,4 +1,5 @@
 const express = require('express');
+const debug = require('debug')('teach-me:upload');
 const router = express.Router();
 const shortid = require('shortid');
 const redisClient = require('../redis/redisConnector');
@@ -20,7 +21,7 @@ router.get('/', function(req, res) {
 
 router.post('/', async(req, res, next) => {
   const teacher = req.session.user;
-  console.log(`User ${teacher.id} is adding a new class...`);
+  debug(`User ${teacher.id} is adding a new class...`);
 
   // Redirect user if he's not a teacher yet
   if (!teacher.isTeacher){
@@ -50,11 +51,11 @@ router.post('/', async(req, res, next) => {
     // Save class to redis
     await redisClient.hset('lessons', newClass.id, JSON.stringify(newClass));
 
-    console.log('The class was uploaded successfully:')
-    console.log(newClass);
+    debug('The class was uploaded successfully:')
+    debug(newClass);
     res.status(201).send({message: "ok"});
   } catch (err) {
-    console.log(err.message);
+    debug(err.message);
     next(err);
   }
 

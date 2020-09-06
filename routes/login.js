@@ -1,4 +1,5 @@
 const express = require('express');
+const debug = require('debug')('teach-me:login');
 const router = express.Router();
 const redisClient = require('../redis/redisConnector');
 const DButils = require('../controllers/utilities');
@@ -8,16 +9,17 @@ router.use(rateLimit());
 
 /* GET login page. */
 router.get('/', function(req, res) {
-  console.log(`A user is logging in...`);
+  debug(`A user is logging in...`);
   res.render('login', {user: req.session.user});
 });
 
+/* POST user login */
 router.post('/', async (req, res, next) =>{
   try {
     // Authenticate User
     let users = await DButils.getSetValues("users");
 
-    console.log(`Searching user's email in the database...`);
+    debug(`Searching user's email in the database...`);
     let user = users.find( user => {
       return user.email.toLowerCase() === req.body.email.toLowerCase() &&
               user.password === req.body.password;
@@ -29,7 +31,7 @@ router.post('/', async (req, res, next) =>{
       await redisClient.hmset('users', user.id, JSON.stringify(user));
       req.session.user = user;
 
-      console.log(`User ${user.id} has logged in:`);
+      debug(`User ${user.id} has logged in:`);
 
       res.status(200).send({message: "ok"});
     } else {
@@ -37,7 +39,7 @@ router.post('/', async (req, res, next) =>{
     }
     
   } catch (err) {
-    console.log(err.message);
+    debug(err.message);
     next(err);
   }
 });

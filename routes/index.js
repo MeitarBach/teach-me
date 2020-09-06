@@ -1,4 +1,5 @@
 var express = require('express');
+const debug = require('debug')('teach-me:index');
 var router = express.Router();
 const rateLimit = require('../controllers/protection');
 
@@ -8,10 +9,10 @@ router.use(rateLimit());
 router.get('/', function(req, res) {
   if (req.session.user){
     res.redirect('store');  //If session exists, go to Store page
-    console.log(`User ${req.session.user.id} is already logged-in so is redirceted to store from homepage...`);
+    debug(`User ${req.session.user.id} is already logged-in so is redirceted to store from homepage...`);
  } else {
     res.render('index');
-    console.log(`A new user is visiting the homepage...`);
+    debug(`A new user is visiting the homepage...`);
  }
 });
 
@@ -20,7 +21,7 @@ router.get('/logout', function(req, res) {
   const userID = req.session.user.id;
   if (req.session.user) {
     req.session.destroy();
-    console.log(`User ${userID} has logged out successfully...`);
+    debug(`User ${userID} has logged out successfully...`);
   }
   res.redirect('/');
 });

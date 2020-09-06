@@ -31,7 +31,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
     lessons = DButils.splitArrayToChunks(lessons, 3);
     res.render('store', {lessons: lessons});
   } catch (err) {
-    debug(err);
+    debug(err.message);
     next(err);
   }
 });
@@ -108,7 +108,7 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
     res.status(200).send({message: "The lesson was added to your cart!"});
 
   } catch (err) {
-    debug(err);
+    debug(err.message);
     next(err);
   }
   

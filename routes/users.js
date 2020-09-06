@@ -1,4 +1,5 @@
 const express = require('express');
+const debug = require('debug')('teach-me:users');
 const router = express.Router();
 const checkSignIn = require('../controllers/session');
 const redisClient = require('../redis/redisConnector');
@@ -11,18 +12,19 @@ router.use(rateLimit());
 router.get('/', checkSignIn, async (req, res, next) => {
   try {
     let users = await DButils.getSetValues("users");
-    console.log(users);
+    debug(users);
 
     const user = req.session.user;
     
     if (user.isAdmin) {
-      console.log('All users info is shown to admin...');
+      debug('All users info is shown to admin...');
       res.render('users', {users: users});
     } else {
       res.redirect('/store');
     }
   } catch (err) {
-      next(err);
+    debug(err.message);
+    next(err);
   }
 });
 
@@ -33,7 +35,7 @@ router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
     let user = await redisClient.hget('users', userID);
     user = JSON.parse(user);
     
-    console.log(`User ${userID} info is shown to admin...`);
+    debug(`User ${userID} info is shown to admin...`);
     let userCart = await redisClient.hget("carts", userID);
     if (!userCart){
             userCart = {items:[], totalPrice: 0};
@@ -44,6 +46,7 @@ router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
     res.render('activityLog', {user : user, userCart : userCart, userPurchases: userPurchases});
 
   } catch (err) {
+    debug(err.message);
     next(err);
   }
 

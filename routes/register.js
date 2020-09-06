@@ -1,4 +1,5 @@
 const express = require('express');
+const debug = require('debug')('teach-me:register');
 const router = express.Router();
 const redisClient = require('../redis/redisConnector');
 const shortid = require('shortid');
@@ -26,7 +27,7 @@ router.post('/', async(req, res, next) => {
     loginActivity : [],
     purchaseHistory : []
   };
-  console.log(`A new user is trying to register...`);
+  debug(`A new user is trying to register...`);
 
   try {
     let users = await DButils.getSetValues("users");
@@ -36,19 +37,18 @@ router.post('/', async(req, res, next) => {
     });
 
     if (userExists) {
-      res.status(409).send({message: "This email address already exists"});
-      console.log(`Impossible to register with an already exisiting email address...`);
-
+      debug(`Impossible to register with an already exisiting email address...`);
+      return res.status(409).send({message: "This email address already exists"});
     } else {
       // everything works as expected
-      console.log('Adding a new user to redis:');
-      console.log(user);
+      debug('Adding a new user to redis:');
+      debug(user);
       await redisClient.hmset('users', user.id, JSON.stringify(user));
       res.status(201).send({message: "ok"});
     }
 
   } catch (err) {
-    console.log(err.message);
+    debug(err.message);
     next(err);
   }
 });
