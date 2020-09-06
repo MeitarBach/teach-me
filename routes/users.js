@@ -3,23 +3,20 @@ const router = express.Router();
 const checkSignIn = require('../controllers/session');
 const redisClient = require('../redis/redisConnector');
 const DButils = require('../controllers/utilities');
+const rateLimit = require('../controllers/protection');
+
+router.use(rateLimit());
 
 /* GET store page. */
 router.get('/', checkSignIn, async (req, res, next) => {
   try {
-    // let users = await redisClient.hgetall("users");
-    // if(users === null){
-    //   users = [];
-    // }
-    // users = Object.values(users);
-    // users = DButils.parseObjectArray(users);
-    
     let users = await DButils.getSetValues("users");
     console.log(users);
 
     const user = req.session.user;
     
     if (user.isAdmin) {
+      console.log('All users info is shown to admin...');
       res.render('users', {users: users});
     } else {
       res.redirect('/store');
@@ -36,6 +33,7 @@ router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
     let user = await redisClient.hget('users', userID);
     user = JSON.parse(user);
     
+    console.log(`User ${userID} info is shown to admin...`);
     let userCart = await redisClient.hget("carts", userID);
     if (!userCart){
             userCart = {items:[], totalPrice: 0};

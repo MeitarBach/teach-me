@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const shortid = require('shortid');
 const redisClient = require('../redis/redisConnector');
+const rateLimit = require('../controllers/protection');
+
+router.use(rateLimit());
 
 /* GET upload class page. */
 router.get('/', function(req, res) {
@@ -23,7 +26,6 @@ router.post('/', async(req, res, next) => {
   if (!teacher.isTeacher){
     return res.redirect('/enroll');
   }
-
 
   // Create Class
   const startTime = new Date(req.body.time).toUTCString().slice(0, -7);
