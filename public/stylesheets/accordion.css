@@ -70,10 +70,11 @@ body {
   }
 }
 
-.purchase-column {
+.purchase-column p{
   float: left;
-  width: 20%;
+  width: 40%;
   padding: 5px;
+  color: #fff;
 }
 
 .purchase-row:after {
