@@ -7,8 +7,29 @@ const DButils = require('../controllers/utilities');
 /* GET store page. */
 router.get('/', checkSignIn, async (req, res, next) => {
   try{
-    // let lessons = await redisClient.lrange("classes", 0, -1);
+    // Get lessons from redis
     let lessons = await DButils.getSetValues('lessons');
+
+    // Filter results if needed
+    const searchFilter = req.query.search;
+    console.log(`Search Filter:${req.query.search}`);
+    console.log(req.url);
+    if (searchFilter){
+      lessons = lessons.filter((lesson)=>{
+        const check = lesson.title.includes(searchFilter) ||
+                lesson.subject.includes(searchFilter) ||
+                lesson.details.includes(searchFilter) ||
+                lesson.instructor.name.includes(searchFilter);
+        console.log(check);
+        return lesson.title.includes(searchFilter) ||
+                lesson.subject.includes(searchFilter) ||
+                lesson.details.includes(searchFilter) ||
+                lesson.instructor.name.includes(searchFilter);
+      })
+    }
+
+    console.log(lessons);
+
     lessons = DButils.splitArrayToChunks(lessons, 3);
     res.render('store', {lessons: lessons});
   } catch (err) {
