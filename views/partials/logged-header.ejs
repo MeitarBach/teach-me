@@ -6,40 +6,40 @@
             </div>
             <div class="logo-nav-left1">
                 <nav class="navbar navbar-default">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header nav_2">
-                    <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/store" class="act">Lessons</a></li>	
-                        <!-- Mega Menu -->
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Teach <b class="caret"></b></a>
-                            <ul class="dropdown-menu multi-column columns-3">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <ul class="multi-column-dropdown">
-                                            <h6>Teachers Activities</h6>
-                                            <li><a href="/enroll">Become a Teacher</a></li>
-                                            <li><a href="/upload">Add a Class</a></li>
-                                        </ul>
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div> 
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/store" class="act">Lessons</a></li>	
+                            <!-- Mega Menu -->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Teach <b class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column columns-3">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <ul class="multi-column-dropdown">
+                                                <h6>Teachers Activities</h6>
+                                                <li><a href="/enroll">Become a Teacher</a></li>
+                                                <li><a href="/upload">Add a Class</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </ul>
-                        </li>
-                        <li class="active"><a href="/purchaseHistory" >Purchase History</a></li>
-                        <% if (session.user.isAdmin) { %>
-                            <li class="active"><a href="/users">Users Info</a></li>	
-                        <% } %>
-                    </ul>
-                </div>
+                                </ul>
+                            </li>
+                            <!-- <li class="active"><a href="/purchaseHistory" >Purchase History</a></li> -->
+                            <% if (session.user.isAdmin) { %>
+                                <li class="active"><a href="/users">Users Info</a></li>	
+                            <% } %>
+                        </ul>
+                    </div>
                 </nav>
             </div>
             <div class="logo-nav-right">
@@ -52,16 +52,35 @@
                         </form>
                     </div>
                 </div>
-                    <!-- search-scripts -->
+                <!-- search-scripts -->
                     <script src="../javascripts//classie.js"></script>
                     <script src="../javascripts//uisearch.js"></script>
-                        <script>
-                            new UISearch( document.getElementById( 'sb-search' ) );
-                        </script>
-                    <!-- //search-scripts -->
+                    <script>
+                        new UISearch( document.getElementById( 'sb-search' ) );
+                    </script>
+                <!-- //search-scripts -->
             </div>
             <div class="header-right">
-                <div class="cart box_1">
+                <div class="dropdown cart">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= session.user.firstName %><b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-column columns-3">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <ul class="multi-column-dropdown">
+                                    <h6>Account Actions</h6>
+                                    <li><a href="/cart">
+                                            <div class="total">My Cart</div>
+                                            <img src="images/bag.png" alt="" />
+                                    </a></li>
+                                    <li class="active"><a href="/purchaseHistory" >Purchase History</a></li><br>
+                                    <li><a href="/logout">Logout <i class="material-icons">logout</i></a></li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </ul>
+                </div>
+                <!-- <div class="cart box_1">
                     <a href="/cart">
                         <h3>
                             <div class="total">My Cart</div>
@@ -71,9 +90,9 @@
                     <p><div class="active"><a href="/logout" class="act">Logout <i class="material-icons">logout</i></a></div></p>
                         
                     <div class="clearfix"> </div>
-                </div>	
+                </div>	 -->
             </div>
-            <div class="clearfix"> </div>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>

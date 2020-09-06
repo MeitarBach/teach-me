@@ -19,11 +19,11 @@ router.get('/', checkSignIn, async (req, res, next) => {
 
     const user = req.session.user;
     
-    // if (user.isAdmin) {
+    if (user.isAdmin) {
       res.render('users', {users: users});
-    // } else {
-    //   res.redirect('/store');
-    // }
+    } else {
+      res.redirect('/store');
+    }
   } catch (err) {
       next(err);
   }

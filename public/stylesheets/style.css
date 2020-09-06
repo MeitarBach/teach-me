@@ -2105,7 +2105,6 @@ label.radio {
 }
 .login-form-grids label {
 	border: 0;
-	padding:0;
 }
 .forgot {
     margin: 1.5em 0 0;
@@ -2651,7 +2650,7 @@ td.invert-image img {
 		width: 16%;
 	}
 	.dropdown-menu.columns-3 {
-		left: -150%;
+		left: -250%;
 	}
 }
 @media (max-width:991px){
@@ -2691,7 +2690,7 @@ td.invert-image img {
 		font-size: 9px;
 	}
 	.sb-search.sb-search-open, .no-js .sb-search {
-		width: 46%;
+		width: 25%;
 	}
 	.banner-info h3 {
 		font-size: 4em;
