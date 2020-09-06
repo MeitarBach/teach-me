@@ -35,6 +35,9 @@
                             </ul>
                         </li>
                         <li class="active"><a href="/purchaseHistory" >Purchase History</a></li>
+                        <% if (session.user.isAdmin) { %>
+                            <li class="active"><a href="/users">Users Info</a></li>	
+                        <% } %>
                     </ul>
                 </div>
                 </nav>
