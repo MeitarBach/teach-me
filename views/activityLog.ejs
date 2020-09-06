@@ -141,7 +141,7 @@
                                                     <td class="invert"><%= userCart.items[i-1].subject %></td>
                                                     <td class="invert"><%= userCart.items[i-1].details %></td>
                                                     <td class="invert"><%= userCart.items[i-1].startTime %> - <%= userCart.items[i-1].endTime %></td>
-                                                    <td class="invert-image"><img height="100" width="100" src="/images/users/default.jpg" alt="instructor" class="img-responsive" /> <%= userCart.items[i-1].instructor.name %></td>
+                                                    <td class="invert-image"><img height="100" width="100" src="/<%= userCart.items[i-1].instructor.imageURL %>" alt="instructor" class="img-responsive" /> <%= userCart.items[i-1].instructor.name %></td>
                                                     <td class="invert">$<%= userCart.items[i-1].price %></td>
                                                 </tr>
                                                 <% } %>
