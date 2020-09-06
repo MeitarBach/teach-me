@@ -30,8 +30,13 @@ router.get('/lesson/:lessonID', checkSignIn, async (req, res, next)=>{
     }
     lesson = JSON.parse(lesson);
 
+    // Get teacher of this lesson from redis
+    let teacher = await redisClient.hget('users', lesson.instructor.id);
+    teacher = JSON.parse(teacher);
+
+
     // Render lesson for user
-    res.render('lesson', {lesson: lesson});
+    res.render('lesson', {lesson: lesson, teacherDetails: teacher.teacherDetails});
   } catch (err) {
     console.log(err.message);
     next(err);

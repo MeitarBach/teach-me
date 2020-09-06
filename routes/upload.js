@@ -29,7 +29,8 @@ router.post('/', async(req, res, next) => {
   const startTime = new Date(req.body.time).toUTCString().slice(0, -7);
   const instructor = {
     name: `${teacher.firstName} ${teacher.lastName}`,
-    imageURL: teacher.imageURL
+    imageURL: teacher.imageURL,
+    id: teacher.id
   }
 
   const newClass = {
