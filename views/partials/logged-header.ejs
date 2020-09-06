@@ -53,16 +53,16 @@
                     </div>
                 </div>
                 <!-- search-scripts -->
-                    <script src="../javascripts//classie.js"></script>
-                    <script src="../javascripts//uisearch.js"></script>
-                    <script>
-                        new UISearch( document.getElementById( 'sb-search' ) );
-                    </script>
+                <script src="../javascripts//classie.js"></script>
+                <script src="../javascripts//uisearch.js"></script>
+                <script>
+                    new UISearch( document.getElementById( 'sb-search' ) );
+                </script>
                 <!-- //search-scripts -->
             </div>
             <div class="header-right">
                 <div class="dropdown cart">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= session.user.firstName %><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong><%= session.user.firstName %></strong><b class="caret"></b></a>
                     <ul class="dropdown-menu multi-column columns-3">
                         <div class="row">
                             <div class="col-sm-4">
