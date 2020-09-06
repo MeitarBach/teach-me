@@ -6,16 +6,16 @@ router.use(rateLimit());
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  const userID = req.session.user.id;
   if (req.session.user){
     res.redirect('store');  //If session exists, go to Store page
-    console.log(`User ${userID} is already logged-in so is redirceted to store from homepage...`);
+    console.log(`User ${req.session.user.id} is already logged-in so is redirceted to store from homepage...`);
  } else {
     res.render('index');
-    console.log(`User ${userID} is visiting the homepage...`);
+    console.log(`A new user is visiting the homepage...`);
  }
 });
 
+//Log user out of the store
 router.get('/logout', function(req, res) {
   const userID = req.session.user.id;
   if (req.session.user) {

@@ -27,7 +27,6 @@ router.post('/', async(req, res, next) => {
     return res.redirect('/enroll');
   }
 
-
   // Create Class
   const startTime = new Date(req.body.time).toUTCString().slice(0, -7);
   const instructor = {
