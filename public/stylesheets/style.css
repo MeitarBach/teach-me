@@ -136,8 +136,11 @@ ul.social-icons li a.instagram:hover{
 .logo-nav-left1 ul li.active a.act{
 	color:#d8703f !important;
 }
-.multi-column-dropdown li a {
+.multi-column-dropdown li a, .dropdown.cart a {
     color: #999 !important;
+}
+.dropdown.cart{
+	padding: 10px 0 0 0;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     background-color: transparent;
@@ -269,7 +272,7 @@ ul.multi-column-dropdown h6 {
 }
 /* Open state */
 .sb-search.sb-search-open,.no-js .sb-search {
-	width:42%;
+	width:25%;
 }
 .sb-search.sb-search-open .sb-icon-search,.no-js .sb-search .sb-icon-search {
 	background:#fff url(../images/img-sp.png) no-repeat 7px -91px;
@@ -2436,15 +2439,15 @@ td.invert-image img {
 /*-----start-responsive-design------*/
 @media (max-width:1440px){
 	.sb-search.sb-search-open, .no-js .sb-search {
-		width: 45%;
+		width: 33%;
 	}
 }
 @media (max-width:1366px){
 	.sb-search {
-		right: 20%;
+		right: 25%;
 	}
 	.sb-search.sb-search-open, .no-js .sb-search {
-		width: 50%;
+		width: 25%;
 	}
 	.logo-nav {
 		padding: 1em 0 2em;
@@ -2478,7 +2481,7 @@ td.invert-image img {
 		right: 18%;
 	}
 	.sb-search.sb-search-open, .no-js .sb-search {
-		width: 55%;
+		width: 25%;
 	}
 	.banner-info h3 {
 		font-size: 4.5em;
@@ -2873,7 +2876,7 @@ td.invert-image img {
 		padding: 1em 0;
 	}
 	.sb-search.sb-search-open, .no-js .sb-search {
-		width: 57%;
+		width: 25%;
 	}
 	.banner-info h3 {
 		font-size: 3.5em;
