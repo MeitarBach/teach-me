@@ -23,8 +23,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
             userCart = JSON.parse(userCart);
         }
 
-        debug(userCart);
-
+        // Render checkout page
         res.render('checkout', {totalPrice: userCart.totalPrice});
     } catch (err) {
         debug(err.message);
@@ -46,6 +45,7 @@ router.post('/', checkSignIn, async (req, res, next) =>{
             userCart = JSON.parse(userCart);
         }
 
+        
         // Add cart to user's purchase history
         userCart.checkoutDate = new Date().toUTCString().slice(0, -7);
         userCart.orderID = shortid.generate();

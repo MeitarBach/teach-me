@@ -30,7 +30,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
 
 router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
   const userID = req.params.id;
-  const userPurchases = req.session.user.purchaseHistory;
+  const userPurchases = req.session.user.purchaseHistory; ///// Should be user with :id purchase history - My Bad
   try {
     let user = await redisClient.hget('users', userID);
     user = JSON.parse(user);

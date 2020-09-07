@@ -22,6 +22,9 @@
 </div>
 <div class="checkout">
     <div class="container">
+        <% if(locals.message){ %>
+            <div class="alert alert-warning" role="alert"><%= message %></div>
+        <% } %>
         <h3 class="animated wow slideInLeft" data-wow-delay=".5s">Your shopping cart contains: <span><%= userCart.items.length %> Products</span></h3>
         <div class="checkout-right animated wow slideInUp" data-wow-delay=".5s">
             <table class="timetable_sub">

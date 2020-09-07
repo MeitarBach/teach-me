@@ -20,7 +20,24 @@ router.get('/', checkSignIn, async (req, res, next) => {
             userCart = JSON.parse(userCart);
         }
 
+        // Remove unavailable lessons from cart
+        let removed = false;
+        for (let i = 0 ; i < userCart.items.length ; i++){
+            if (!await redisClient.hexists('lessons', userCart.items[i].id)){
+                debug(`Lesson ${userCart.items[i].id} isn't available, removing it from user's cart...`)
+                removed = true;
+                userCart.totalPrice -= userCart.items[i].price;
+                userCart.items.splice(i ,1);
+            }
+        }
+
         debug(userCart);
+
+        // Render with appropriate message if a lesson was removed
+        if (removed){
+            await redisClient.hset('carts', userID, JSON.stringify(userCart));
+            return res.render('cart', {message: "One or more lessons on your cart are no longer available.\nWe automatically removed them for you...", userCart});
+        }
 
         res.render('cart', {userCart});
     } catch (err) {

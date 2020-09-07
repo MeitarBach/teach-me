@@ -18,7 +18,7 @@ async function search(){
         // const response = await fetch(`?search=${searchValue}`, {redirect: "follow"});
         // alert("I'm here");
         // alert(JSON.stringify(response));
-        window.location.href=`?search=${searchValue}`;
+        window.location.href=`/store?search=${searchValue}`;
     } catch (err){
         alert(err);
         console.log(err);
