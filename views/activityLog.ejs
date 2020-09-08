@@ -86,15 +86,15 @@
                                     <h5>Purchase History</h5>
                                     <p>
                                       <div class="accordion">
-                                        <% for (let i = 0; i < userPurchases.length; i++) { %>
+                                        <% for (let i = 0; i < user.purchaseHistory.length; i++) { %>
                                         <div class="accordion-item">
                                                 <div class="accordion-item-header">
-                                                    Order No. <%= userPurchases[i].orderID %> - <%=  userPurchases[i].checkoutDate  %>
+                                                    Order No. <%= user.purchaseHistory[i].orderID %> - <%=  user.purchaseHistory[i].checkoutDate %>
                                                 </div>
                                             <div class="accordion-item-body">
                                                 <div class="accordion-item-body-content">
                                                     <u><h4>Classes</h4></u><br>
-                                                    <% for (let j = 0; j < userPurchases[i].items.length; j++) { %>
+                                                    <% for (let j = 0; j < user.purchaseHistory[i].items.length; j++) { %>
                                                         <div class="purchase-row">
                                                             <div class="purchase-column">
                                                                 <p>Title:</p>
@@ -103,15 +103,15 @@
                                 
                                                             </div>
                                                             <div class="purchase-column">
-                                                              <p><%= userPurchases[i].items[j].title %></p>
-                                                              <p><%= userPurchases[i].items[j].instructor.name %></p>
-                                                              <p><%= userPurchases[i].items[j].price %> $</p>
+                                                              <p><%= user.purchaseHistory[i].items[j].title %></p>
+                                                              <p><%= user.purchaseHistory[i].items[j].instructor.name %></p>
+                                                              <p><%= user.purchaseHistory[i].items[j].price %> $</p>
                                                             </div>
                                                         </div>
                                                           <br>
                                                     <% } %>
                                                     <hr style="width:50%;text-align:left;margin-left:0">
-                                                    <strong>Total price : $<%= userPurchases[i].totalPrice %></strong>
+                                                    <strong>Total price : $<%= user.purchaseHistory[i].totalPrice %></strong>
                                                 </div>
                                             </div>
                                         </div>
