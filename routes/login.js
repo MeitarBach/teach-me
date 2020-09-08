@@ -4,17 +4,18 @@ const router = express.Router();
 const redisClient = require('../redis/redisConnector');
 const DButils = require('../controllers/utilities');
 const rateLimit = require('../controllers/protection');
+const checkSignIn = require('../controllers/session');
 
 router.use(rateLimit());
 
 /* GET login page. */
-router.get('/', function(req, res) {
+router.get('/', checkSignIn, function(req, res) {
   debug(`A user is logging in...`);
   res.render('login', {user: req.session.user});
 });
 
 /* POST user login */
-router.post('/', async (req, res, next) =>{
+router.post('/', checkSignIn, async (req, res, next) =>{
   try {
     // Authenticate User
     let users = await DButils.getSetValues("users");
@@ -37,9 +38,9 @@ router.post('/', async (req, res, next) =>{
         req.session.cookie.expires = false;
       }
 
-      debug(`User ${user.id} has logged in:`);
+      debug(`User has logged in:`);
 
-      res.status(200).send({message: "ok"});
+      res.status(200).send({message: `OK! User  has logged in:`});
     } else {
       res.status(404).send({message: `*The email or password were incorrect!`});
     }

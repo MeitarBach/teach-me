@@ -7,7 +7,7 @@ const rateLimit = require('../controllers/protection');
 router.use(rateLimit());
 
 /* GET my Purchases page. */
-router.get('/',checkSignIn, function(req, res, next) {
+router.get('/', checkSignIn, function(req, res, next) {
   debug(`User ${req.session.user.id} is accessing his purchase history...`)
   const userPurchases = req.session.user.purchaseHistory;
   debug(userPurchases);

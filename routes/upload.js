@@ -4,11 +4,12 @@ const router = express.Router();
 const shortid = require('shortid');
 const redisClient = require('../redis/redisConnector');
 const rateLimit = require('../controllers/protection');
+const checkSignIn = require('../controllers/session');
 
 router.use(rateLimit());
 
 /* GET upload class page. */
-router.get('/', function(req, res) {
+router.get('/', checkSignIn, function(req, res) {
   const teacher = req.session.user;
 
   // Redirect user if he's not a teacher yet
@@ -19,7 +20,7 @@ router.get('/', function(req, res) {
   res.render('upload');
 });
 
-router.post('/', async(req, res, next) => {
+router.post('/', checkSignIn, async(req, res, next) => {
   const teacher = req.session.user;
   debug(`User ${teacher.id} is adding a new class...`);
 
@@ -58,7 +59,6 @@ router.post('/', async(req, res, next) => {
     debug(err.message);
     next(err);
   }
-
 });
 
 module.exports = router;

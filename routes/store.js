@@ -91,10 +91,8 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
     // const lessons = await redisClient.lrange('classes', 0, -1);
     const lessons = await DButils.getSetValues('lessons');
     let lesson = lessons.find( lesson => {
-      // lesson = JSON.parse(lesson);
       return lesson.id === lessonID;
     });
-    // lesson = JSON.parse(lesson);
 
     // Push it to the user's cart
     debug(`Adding lesson: ${lessonID} to the user's cart!`);
@@ -110,8 +108,7 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
   } catch (err) {
     debug(err.message);
     next(err);
-  }
-  
+  } 
 });
 
 module.exports = router;

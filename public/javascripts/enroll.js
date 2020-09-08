@@ -16,18 +16,21 @@ async function register(userID){
   if(img){
     fd.append('image', img, userID);
   }
-  
-  let response = await fetch('/enroll', {
-      method: 'PUT',
-      body: fd
-  });
-    
-  let result = await response.json();
-  if (response.status === 409){
-    document.getElementById("already-teacher").innerHTML = result.message;
-  } else if (response.status === 500){
-    alert(result.message);
-  } else {
-    window.location.href = "upload"; 
+  try {
+    let response = await fetch('/enroll', {
+        method: 'PUT',
+        body: fd
+    });
+      
+    let result = await response.json();
+    if (response.status === 409){
+      document.getElementById("already-teacher").innerHTML = result.message;
+    } else if (response.status === 500){
+      alert(result.message);
+    } else {
+      window.location.href = "upload"; 
+    }
+  } catch (err) {
+    console.log(err);
   }
 }
