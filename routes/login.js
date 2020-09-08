@@ -9,18 +9,17 @@ const checkSignIn = require('../controllers/session');
 router.use(rateLimit());
 
 /* GET login page. */
-router.get('/', checkSignIn, function(req, res) {
+router.get('/', (req, res)=> {
   debug(`A user is logging in...`);
   res.render('login', {user: req.session.user});
 });
 
 /* POST user login */
-router.post('/', checkSignIn, async (req, res, next) =>{
+router.post('/', async (req, res, next) =>{
   try {
     // Authenticate User
-    let users = await DButils.getSetValues("users");
-
     debug(`Searching user's email in the database...`);
+    let users = await DButils.getSetValues("users");
     let user = users.find( user => {
       return user.email.toLowerCase() === req.body.email.toLowerCase() &&
               user.password === req.body.password;
