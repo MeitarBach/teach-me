@@ -1,20 +1,19 @@
 const fetch = require('node-fetch');
 const debug = require('debug')('teach-me:test');
 
-
 const URL = "http://localhost:3000";
 
 const user1register = {
-    firstName : "Aria",
+    firstName : "Bran",
     lastName : "Stark",
-    email : "aria@stark.com",
+    email : "bran@stark.com",
     password : "123",
 };
 
 const user2register = {
     firstName : "John",
     lastName : "Snow",
-    email : "aria@stark.com",
+    email : "bran@stark.com",
     password : "321",
 };
 
@@ -26,6 +25,40 @@ const classToUpload = {
     endTime : "19:30",
     price : "30"
 }
+
+const teacherDetails = new FormData();
+teacherDetails.append('proficiencies', "Proffesional at wall climbing, exploring visions and understanding Hodor");
+teacherDetails.append('details', "Can teach you of yourself and of the world");
+teacherDetails.append('image', "./public/images/users/bran-test.jpg", userID);//how to handle userID?
+
+async function test(){
+    //Register new user
+    await register(user1register);
+    //Register new user with an already exisiting email at database
+    await register(user2register);
+    //Login non-registered user
+    await login(user2register);
+    //Login a registered user
+    await login(user1register);
+    //Upload a class before becoming a teacher
+    await upload(classToUpload);
+    //Become a teacher
+    await enrollTeacher(teacherDetails);
+    //Become a teacher again
+    await enrollTeacher(teacherDetails);
+    //Upload a class as a teacher
+    await upload(classToUpload);
+    //Add to cart
+    await addToCart(exampleLessonID);
+    //Delete lesson from cart
+    await deleteLessonFromCart(exampleLessonID);
+    //Add to cart again
+    await addToCart(exampleLessonID);
+    //Checkout
+    
+}
+
+//test();
 
 async function register(user) {
     try {
@@ -39,13 +72,6 @@ async function register(user) {
 
         const result = await response.json();
         debug(result.message);
-        // if (response.ok) {
-        //     debug('Successfully registered user ' + JSON.stringify(user));
-        // } else if (response.status === 409) {
-        //     debug(`The email you are using ${user.email} is already registered`);
-        // } else {
-        //     debug(`An error occured while trying to register. HTTP status: ${response.status}`);
-        // }
 
     } catch (error) {
         console.error(error);
@@ -70,13 +96,20 @@ async function login(user) {
         const result = await response.json();
         debug(result.message);
 
-        // if (response.ok) {
-        //     debug('Successfully logged user ' + JSON.stringify(user) + ' in');
-        // } else if (response.status === 404) {
-        //     debug('The credentials you enter are incorrect');
-        // } else {
-        //     debug(`There was an error on the server while trying to login ${response.status}`);
-        // }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function enrollTeacher(details) {
+    try {
+        const response = await fetch('/enroll', {
+            method: 'PUT',
+            body: details
+        });
+          
+        const result = await response.json();
+        debug(result.message);
 
     } catch (err) {
         console.log(err);
@@ -118,17 +151,21 @@ async function addToCart(lessonID) {
     }
 }
 
-async function enrollTeacher() {
+async function deleteLessonFromCart(lessonID){
     try {
-        const response = await fetch('/enroll', {
-            method: 'PUT',
-            body: fd
-        });
-          
+        const response = await fetch(`/cart/${lessonID}`, {method: 'DELETE'});
+
         const result = await response.json();
-        debug(result.message);
+        
+        debug(result.message)
 
     } catch (err) {
         console.log(err);
     }
 }
+
+async function checkOut(){}
+
+async function logout(){}
+
+async function adminTest(){}

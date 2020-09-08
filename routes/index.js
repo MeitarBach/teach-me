@@ -2,6 +2,8 @@ var express = require('express');
 const debug = require('debug')('teach-me:index');
 var router = express.Router();
 const rateLimit = require('../controllers/protection');
+const checkSignIn = require('../controllers/session');
+
 
 router.use(rateLimit());
 
@@ -17,7 +19,7 @@ router.get('/', function(req, res) {
 });
 
 //Log user out of the store
-router.get('/logout', function(req, res) {
+router.get('/logout', checkSignIn, function(req, res) {
   const userID = req.session.user.id;
   if (req.session.user) {
     req.session.destroy();

@@ -5,18 +5,16 @@ const redisClient = require('../redis/redisConnector');
 const shortid = require('shortid');
 const DButils = require('../controllers/utilities');
 const rateLimit = require('../controllers/protection');
-const checkSignIn = require('../controllers/session');
-
 
 router.use(rateLimit());
 
 /* GET register page. */
-router.get('/', checkSignIn, function(req, res) {
+router.get('/', function(req, res) {
   res.render('register');
 });
 
 /* POST a new user. */
-router.post('/', checkSignIn, async(req, res, next) => {
+router.post('/', async(req, res, next) => {
   const user = {
     id : shortid.generate(),
     firstName : req.body.firstName,

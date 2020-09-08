@@ -44,7 +44,8 @@ router.put('/', checkSignIn, upload.single('image'), async (req, res, next) =>{
     debug(user);
 
     // Send response to client
-    res.status(201).send({message: 'ok'});
+    res.status(201).send({message: 'Succsessfully updated user as a teacher'});
+  
   } catch (err) {
     debug(err.message);
     next(err);
