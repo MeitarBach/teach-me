@@ -85,3 +85,15 @@ body {
   display: table;
   clear: both;
 }
+
+.purchase-column p a strong {
+  padding: 10px 20px;
+  color: #fff;
+  background: #d8703f;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.purchase-column p a strong:hover{
+	background:#ffc229;
+}

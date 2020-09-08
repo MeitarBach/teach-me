@@ -32,12 +32,15 @@
                                     <p>Title:</p>
                                     <p>Instructor's Name:</p>
                                     <p>Price:</p>
-    
                                 </div>
                                 <div class="purchase-column">
                                   <p><%= userPurchases[i].items[j].title %></p>
                                   <p><%= userPurchases[i].items[j].instructor.name %></p>
                                   <p><%= userPurchases[i].items[j].price %> $</p>
+                                </div>
+                                <div class="purchase-column">
+                                    <br>
+                                    <p><a href="/store/lesson/<%= userPurchases[i].items[j].id %>"><strong>Overview</strong></a></p>
                                 </div>
                             </div>
                               <br>

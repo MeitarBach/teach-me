@@ -17,9 +17,8 @@ router.get('/', function(req, res) {
 router.post('/', async (req, res, next) =>{
   try {
     // Authenticate User
-    let users = await DButils.getSetValues("users");
-
     debug(`Searching user's email in the database...`);
+    let users = await DButils.getSetValues("users");
     let user = users.find( user => {
       return user.email.toLowerCase() === req.body.email.toLowerCase() &&
               user.password === req.body.password;
