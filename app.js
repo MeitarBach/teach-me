@@ -35,7 +35,7 @@ app.use(session({
   name: '_redisStore',
   resave: true,
   saveUninitialized: true,
-  cookie: { secure: false, maxAge: 60 * 30 * 1000}, // 0.5 hour sessions
+  cookie: { secure: false, maxAge: 30 * 60 * 1000}, // 0.5 hour sessions
   store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient }), 
 }));
 

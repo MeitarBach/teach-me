@@ -107,6 +107,10 @@
                                                               <p><%= user.purchaseHistory[i].items[j].instructor.name %></p>
                                                               <p><%= user.purchaseHistory[i].items[j].price %> $</p>
                                                             </div>
+                                                            <div class="purchase-column">
+                                                                <br>
+                                                                <p><a href="/store/lesson/<%= user.purchaseHistory[i].items[j].id %>"><strong>Overview</strong></a></p>
+                                                            </div>
                                                         </div>
                                                           <br>
                                                     <% } %>

@@ -54,7 +54,7 @@ body a:hover{
 	text-decoration:none;
 	color:#999;
 }
-.header-grid-left ul li a:hover{
+.header-grid-left ul li a:hover, .dropdown-toggle strong:hover{
 	color:#FFC229;
 }
 .header-grid-right{
@@ -133,7 +133,7 @@ ul.social-icons li a.instagram:hover{
     text-transform: uppercase;
 	font-weight: 600;
 }
-.logo-nav-left1 ul li.active a.act{
+.logo-nav-left1 ul li.active a.act, .dropdown-toggle strong:hover{
 	color:#d8703f !important;
 }
 .multi-column-dropdown li a, .dropdown.cart a {
@@ -290,7 +290,6 @@ ul.multi-column-dropdown h6 {
 }
 .box_1 {
   float: right;
-  margin-top: 5px;
 }
 .box_1 h3 {
   color:#d8703f;
@@ -3904,4 +3903,7 @@ td.invert-image img {
 		float: left;
 		text-align: left;
 	}
+	/* .dropdown-toggle:hover{
+		color: 
+	} */
 }
