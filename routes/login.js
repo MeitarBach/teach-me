@@ -31,14 +31,17 @@ router.post('/', async (req, res, next) =>{
       await redisClient.hmset('users', user.id, JSON.stringify(user));
       req.session.user = user;
 
-      req.session.cookie.expires = false;
-      req.session.
+      // Remember user if he checked Remember Me
+      if (req.body.remember){
+        debug(`User checked remember me button, canceling cookie expiration...`);
+        req.session.cookie.expires = false;
+      }
 
       debug(`User ${user.id} has logged in:`);
 
       res.status(200).send({message: "ok"});
     } else {
-      res.status(404).send({message: `The email or password were incorrect`});
+      res.status(404).send({message: `*The email or password were incorrect!`});
     }
     
   } catch (err) {

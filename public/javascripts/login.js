@@ -8,10 +8,12 @@ loginForm.addEventListener('submit', async (event) => {
 async function login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    
+    const remember = document.getElementById("remember").checked;
+
     const userCredentials = {
         email,
-        password
+        password,
+        remember
     }
 
     try {
@@ -26,7 +28,9 @@ async function login() {
         const result = await response.json();
         
         if (response.status === 404) {
-            document.getElementById("wrong-credentials").innerHTML = result.message;
+            const wrongCredentials = document.getElementById("wrong-credentials");
+            wrongCredentials.innerHTML = result.message;
+            wrongCredentials.className = "alert alert-danger";
         } else if (response.status === 500) {
             throw new Error("There was an error on the server");
         } else {
