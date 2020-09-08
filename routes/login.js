@@ -31,6 +31,9 @@ router.post('/', async (req, res, next) =>{
       await redisClient.hmset('users', user.id, JSON.stringify(user));
       req.session.user = user;
 
+      req.session.cookie.expires = false;
+      req.session.
+
       debug(`User ${user.id} has logged in:`);
 
       res.status(200).send({message: "ok"});

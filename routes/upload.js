@@ -53,7 +53,7 @@ router.post('/', async(req, res, next) => {
 
     debug('The class was uploaded successfully:')
     debug(newClass);
-    res.status(201).send({message: "ok"});
+    res.status(201).send({message: "The class was uploaded successfully!", lessonID: newClass.id});
   } catch (err) {
     debug(err.message);
     next(err);

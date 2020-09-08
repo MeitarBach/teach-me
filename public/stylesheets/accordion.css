@@ -70,10 +70,13 @@ body {
   }
 }
 
-.purchase-column p{
+.purchase-column {
   float: left;
   width: 30%;
   padding: 5px;
+}
+
+.purchase-column p{
   color: #fff;
 }
 

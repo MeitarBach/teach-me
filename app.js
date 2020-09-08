@@ -35,8 +35,10 @@ app.use(session({
   name: '_redisStore',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false, maxAge: 60 * 30 * 1000},
-  store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient, ttl: 0.5 * 60 * 60 }), // 0.5 hour sessions
+  cookie: { secure: false, maxAge: 10 * 1000},
+  // cookie: { secure: false, maxAge: 60 * 30 * 1000},
+  // store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient, ttl: 0.5 * 60 * 60 }), // 0.5 hour sessions
+  store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient, ttl: 10 }), // 0.5 hour sessions
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
