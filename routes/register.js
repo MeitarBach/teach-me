@@ -5,16 +5,18 @@ const redisClient = require('../redis/redisConnector');
 const shortid = require('shortid');
 const DButils = require('../controllers/utilities');
 const rateLimit = require('../controllers/protection');
+const checkSignIn = require('../controllers/session');
+
 
 router.use(rateLimit());
 
 /* GET register page. */
-router.get('/', function(req, res) {
+router.get('/', checkSignIn, function(req, res) {
   res.render('register');
 });
 
 /* POST a new user. */
-router.post('/', async(req, res, next) => {
+router.post('/', checkSignIn, async(req, res, next) => {
   const user = {
     id : shortid.generate(),
     firstName : req.body.firstName,
@@ -44,7 +46,7 @@ router.post('/', async(req, res, next) => {
       debug('Adding a new user to redis:');
       debug(user);
       await redisClient.hmset('users', user.id, JSON.stringify(user));
-      res.status(201).send({message: "ok"});
+      res.status(201).send({message: "The user has registered successfully"});
     }
 
   } catch (err) {
