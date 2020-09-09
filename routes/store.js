@@ -95,7 +95,6 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
     });
 
     // Push it to the user's cart
-    debug(`Adding lesson: ${lessonID} to the user's cart!`);
     userCart.items.push(lesson);
     userCart.totalPrice += lesson.price;
     await redisClient.HMSET('carts', userID, JSON.stringify(userCart));

@@ -51,11 +51,11 @@ async function test(){
     // //Upload a class as a teacher
     await upload(classToUpload);
     // //Add to cart
+    await addToCart(exampleLessonID);
+    //Trying to add same lesson again
     // await addToCart(exampleLessonID);
     // //Delete lesson from cart
-    // await deleteLessonFromCart(exampleLessonID);
-    // //Add to cart again
-    // await addToCart(exampleLessonID);
+    await deleteLessonFromCart(exampleLessonID);
     // //Checkout
     
 }
@@ -150,7 +150,11 @@ async function upload(lesson) {
 
 async function addToCart(lessonID) {
     try {
-        const response = await fetch(URL + `/store/add-to-cart/${lessonID}`);
+        const response = await fetch(URL + `/store/add-to-cart/${lessonID}`, {
+            headers : {
+                Cookie : cookie
+            }
+        });
         const result = await response.json();
         debug(result.message);
     
@@ -161,7 +165,12 @@ async function addToCart(lessonID) {
 
 async function deleteLessonFromCart(lessonID){
     try {
-        const response = await fetch(URL + `/cart/${lessonID}`, {method: 'DELETE'});
+        const response = await fetch(URL + `/cart/${lessonID}`, {
+            method: 'DELETE',
+            headers : {
+                Cookie : cookie
+            }
+        });
 
         const result = await response.json();
         
