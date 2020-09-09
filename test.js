@@ -23,9 +23,9 @@ const classToUpload = {
     title : "History Present and Future with Bran",
     subject : "History Present and Future",
     details : "Bran is the 3 eye'd raven, and that is self explenatory",
-    StartTime : "2021-06-12T17:30",
+    startTime : "2021-06-12T17:30",
     endTime : "19:30",
-    price : "30"
+    price : 30
 }
 
 const teacherDetails = new FormData();
@@ -41,9 +41,9 @@ async function test(){
     // //Login non-registered user
     // await login(user2register);
     // //Login a registered user
-    await login(user1register);
+    // await login(user1register);
     // //Upload a class before becoming a teacher
-    // await upload(classToUpload);
+    await upload(classToUpload);
     // //Become a teacher
     // await enrollTeacher(teacherDetails);
     // //Become a teacher again
@@ -72,11 +72,8 @@ async function register(user) {
             body: JSON.stringify(user)
         });
         const result = await response.json();
-        if (result.redirected) {
-            debug("User is already logged in");
-        } else {
-            debug(result.message);
-        }
+        debug(result.message);
+        
 
     } catch (error) {
         console.error(error);
@@ -100,11 +97,7 @@ async function login(user) {
         });
 
         const result = await response.json();
-        if (result.redirected) {
-            debug("User is already logged in");
-        } else {
-            debug(result.message);
-        }
+        debug(result.message);
 
     } catch (err) {
         console.log(err);
@@ -136,15 +129,13 @@ async function upload(lesson) {
             body: JSON.stringify(lesson)
         });
 
-        const result = await response.json();
-        
-        if (response.redirected) {
-            debug("In order to upload class you must become a teacher first");
-        } else {
-            exampleLessonID = result.lessonID //Automatically global variable to be used in add to cart
-            debug(result.message);
-        }
+            const result = await response.json();
+            
+            if (response.ok) {
+                exampleLessonID = result.lessonID //Automatically global variable to be used in add to cart
+            }
 
+            debug(result.message);
     } catch (err) {
         console.log(err);
     }
