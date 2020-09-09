@@ -38,7 +38,7 @@ async function upload() {
         const result = await response.json();
         
         if (response.status === 201) {
-            window.location.href = "store";
+            window.location.href = `/store/lesson/${result.lessonID}`;
         } else if (response.status === 500) {
             throw new Error("There was an error on the server");
         }

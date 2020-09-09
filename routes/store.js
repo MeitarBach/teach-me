@@ -102,7 +102,6 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
     }
 
     // Find the lesson item
-    // const lessons = await redisClient.lrange('classes', 0, -1);
     const lessons = await DButils.getSetValues('lessons');
     let lesson = lessons.find( lesson => {
       return lesson.id === lessonID;
@@ -116,7 +115,7 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
     // Success - notify the user
     debug("Successfully updated user's cart:");
     debug(userCart);
-    res.status(200).send({message: "The lesson was added to your cart!"});
+    res.status(200).send({message: `The lesson '${lesson.title}' was added to your cart!`});
 
   } catch (err) {
     debug(err.message);
