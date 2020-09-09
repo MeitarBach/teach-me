@@ -31,7 +31,9 @@ router.post('/', checkSignIn, async(req, res, next) => {
   }
 
   // Create Class
-  const startTime = new Date(req.body.time).toUTCString().slice(0, -7);
+  let startTime = new Date(req.body.startTime);
+  startTime.setHours(startTime.getHours() + 3);
+  startTime = startTime.toUTCString().slice(0, -7);
   const instructor = {
     name: `${teacher.firstName} ${teacher.lastName}`,
     imageURL: teacher.imageURL,

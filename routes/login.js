@@ -29,7 +29,10 @@ router.post('/', async (req, res, next) =>{
     
     //Log user in and update his login activity
     if (user) {
-      user.loginActivity.push((new Date()).toUTCString().slice(0, -7));
+      let loginTime = new Date();
+      loginTime.setHours(loginTime.getHours() + 3);
+      loginTime = loginTime.toUTCString().slice(0, -7);
+      user.loginActivity.unshift(loginTime);
       await redisClient.hmset('users', user.id, JSON.stringify(user));
       req.session.user = user;
 
