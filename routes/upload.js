@@ -26,6 +26,7 @@ router.post('/', checkSignIn, async(req, res, next) => {
 
   // Redirect user if he's not a teacher yet
   if (!teacher.isTeacher){
+    debug(`A user which isn't a teacher tried to upload a class...`);
     return res.render('/enroll', {message: `You must become a teacher before you upload a class!!`});
   }
 
