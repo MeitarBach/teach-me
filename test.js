@@ -41,7 +41,7 @@ async function test(){
     // //Login non-registered user
     // await login(user2register);
     // //Login a registered user
-    // await login(user1register);
+    await login(user1register);
     // //Upload a class before becoming a teacher
     await upload(classToUpload);
     // //Become a teacher
