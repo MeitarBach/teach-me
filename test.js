@@ -96,6 +96,8 @@ async function login(user) {
             body: JSON.stringify(userCredentials)
         });
 
+        cookie = response.headers.get('set-cookie').split(';')[0];
+        // debug(response.headers.get('set-cookie'));
         const result = await response.json();
         debug(result.message);
 
@@ -123,19 +125,21 @@ async function upload(lesson) {
     try {
         const response = await fetch(URL + '/upload', {
             method: 'POST',
+            credentials:'same-origin',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Cookie': cookie
             },
             body: JSON.stringify(lesson)
         });
 
-            const result = await response.json();
+        const result = await response.json();
             
-            if (response.ok) {
-                exampleLessonID = result.lessonID //Automatically global variable to be used in add to cart
-            }
+        if (response.ok) {
+            exampleLessonID = result.lessonID //Automatically global variable to be used in add to cart
+        }
 
-            debug(result.message);
+        debug(result.message);
     } catch (err) {
         console.log(err);
     }
