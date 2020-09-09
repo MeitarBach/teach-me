@@ -10,16 +10,25 @@ router.use(rateLimit());
 
 /* GET store page. */
 router.get('/', checkSignIn, async (req, res, next) => {
+  debug(`Trying to access users' activity...`)
   try {
     let users = await DButils.getSetValues("users");
-    debug(users);
 
     const user = req.session.user;
     
     if (user.isAdmin) {
       debug('All users info is shown to admin...');
+      debug(users);
+      if (req.headers.test){
+        return res.status(200).send({users});
+      }
+
       res.render('users', {users: users});
     } else {
+      debug(`Not an Admin. Access denied!`);
+      if (req.headers.test){
+        return res.status(403).send({users: `Not an Admin. Access denied!`});
+      }
       res.redirect('/store');
     }
   } catch (err) {

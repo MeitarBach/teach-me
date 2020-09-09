@@ -19,6 +19,13 @@ const user2register = {
     password : "321",
 };
 
+const adminRegister = {
+    firstName : "admin",
+    lastName : "admin",
+    email : "admin@test.com",
+    password : "321",
+};
+
 const classToUpload = {
     title : "History Present and Future with Bran",
     subject : "History Present and Future",
@@ -67,9 +74,15 @@ async function test(){
     // await checkOut(paymentExample);
     //Present user Purchase history
     // await userPurchaseHistory();
+    // Not admin trying to access users' activity
+    await adminTest();
     //Log out user
     await logout();
-    
+    // Admin page check
+    // await register(adminRegister);
+    // await login(adminRegister);
+    // await adminTest();
+    // await logout();
 }
 
 test();
@@ -250,4 +263,21 @@ async function logout() {
     }
 }
 
-async function adminTest(){}
+async function adminTest() {
+    try {
+        const response = await fetch(URL + '/users', {
+            headers : {
+                'Content-Type': 'application/json',
+                test: true,
+                Cookie : cookie
+            }
+        });
+    
+        const result = await response.json();
+        debug(`Accessing users information:`);
+        debug(result.users);
+    
+    } catch (err) {
+        debug(err);
+    }
+}
