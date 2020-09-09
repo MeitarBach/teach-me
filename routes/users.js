@@ -37,6 +37,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
   }
 });
 
+/* GET specific user activity-log */
 router.get('/activity-log/:id', checkSignIn, async (req, res, next) => {
   const userID = req.params.id;
   try {

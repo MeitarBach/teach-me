@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
  }
 });
 
-//Log user out of the store
+/* GET user out of the store */
 router.get('/logout', checkSignIn, function(req, res) {
   const userID = req.session.user.id;
   if (req.session.user) {

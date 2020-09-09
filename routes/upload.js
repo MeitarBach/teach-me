@@ -20,6 +20,7 @@ router.get('/', checkSignIn, function(req, res) {
   res.render('upload');
 });
 
+/* POST a new class to the store */
 router.post('/', checkSignIn, async(req, res, next) => {
   const teacher = req.session.user;
   debug(`User ${teacher.id} is adding a new class...`);

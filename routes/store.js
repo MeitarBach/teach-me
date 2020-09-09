@@ -44,6 +44,7 @@ router.get('/', checkSignIn, async (req, res, next) => {
   }
 });
 
+/* GET lesson details page */
 router.get('/lesson/:lessonID', checkSignIn, async (req, res, next)=>{
   try{
 
@@ -105,10 +106,8 @@ router.get('/add-to-cart/:id', checkSignIn, async (req, res, next) => {
     }
 
     // Find the lesson item
-    const lessons = await DButils.getSetValues('lessons');
-    let lesson = lessons.find( lesson => {
-      return lesson.id === lessonID;
-    });
+    let lesson = await redisClient.hget('lessons', lessonID);
+    lesson = JSON.parse(lesson);
 
     // Push it to the user's cart
     userCart.items.push(lesson);
