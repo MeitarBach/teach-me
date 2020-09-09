@@ -3,6 +3,8 @@ const debug = require('debug')('teach-me:test');
 const FormData = require('form-data');
 const fs = require('fs');
 
+//Test parameters
+
 const URL = "http://localhost:3000";
 
 const user1register = {
@@ -49,40 +51,58 @@ const paymentExample = {
 
 async function test(){
     //Register new user
-    // await register(user1register);
+    await register(user1register);
+    
     //Register new user with an already exisiting email at database
-    // await register(user2register);
-    // //Login non-registered user
-    // await login(user2register);
-    // //Login a registered user
+    await register(user2register);
+    
+    //Login non-registered user
+    await login(user2register);
+    
+    //Login a registered user
     await login(user1register);
-    // //Upload a class before becoming a teacher
-    // await upload(classToUpload);
-    // //Become a teacher
-    // await enrollTeacher(teacherDetails);
-    // //Become a teacher again
-    // await enrollTeacher(teacherDetails);
-    // //Upload a class as a teacher
-    // await upload(classToUpload);
-    // //Add to cart
-    // await addToCart(exampleLessonID);
+    
+    //Access Store and view lessons
+    await viewStore();
+    
+    //Upload a class before becoming a teacher
+    await upload(classToUpload);
+    
+    //Become a teacher
+    await enrollTeacher(teacherDetails);
+    
+    //Upload a class as a teacher
+    await upload(classToUpload);
+    
+    //View lesson information
+    await viewLesson(exampleLessonID);
+    
+    //Add to cart
+    await addToCart(exampleLessonID);
+    
     //Trying to add same lesson again
-    // await addToCart(exampleLessonID);
-    // //Delete lesson from cart
-    // await deleteLessonFromCart(exampleLessonID);
-    // //Checkout
-    // await checkOut(paymentExample);
+    await addToCart(exampleLessonID);
+    
+    //Delete lesson from cart
+    await deleteLessonFromCart(exampleLessonID);
+    
+    //Checkout
+    await checkOut(paymentExample);
+    
     //Present user Purchase history
-    // await userPurchaseHistory();
-    // Not admin trying to access users' activity
+    await userPurchaseHistory();
+    
+    //Not admin trying to access users' activity
     await adminTest();
+    
     //Log out user
     await logout();
-    // Admin page check
-    // await register(adminRegister);
-    // await login(adminRegister);
-    // await adminTest();
-    // await logout();
+    
+    //Admin page check
+    await register(adminRegister);
+    await login(adminRegister);
+    await adminTest();
+    await logout();
 }
 
 test();
@@ -101,7 +121,7 @@ async function register(user) {
         
 
     } catch (error) {
-        console.error(error);
+        debug(error);
     }
 }
 
@@ -127,7 +147,45 @@ async function login(user) {
         debug(result.message);
 
     } catch (err) {
-        console.log(err);
+        debug(err);
+    }
+}
+
+async function viewStore(){
+    try {
+        const response = await fetch(URL + '/store', {
+            headers : {
+                'Content-Type': 'application/json',
+                test: true,
+                Cookie : cookie
+            }
+        });
+        
+        debug(`Acessing the store:`);
+        const result = await response.json();
+        debug(result.lessons);
+    
+    } catch (err) {
+        debug(err);
+    }
+}
+
+async function viewLesson(lessonID) {
+    try {
+        const response = await fetch(URL + `/store/lesson/${lessonID}`, {
+            headers : {
+                'Content-Type': 'application/json',
+                test: true,
+                Cookie : cookie
+            }
+        });
+        
+        debug(`Viewing lesson ${lessonID} information:`);
+        const result = await response.json();
+        debug(result.lesson);
+    
+    } catch (err) {
+        debug(err);
     }
 }
 
@@ -145,7 +203,7 @@ async function enrollTeacher(details) {
         debug(result.message);
 
     } catch (err) {
-        console.log(err);
+        debug(err);
     }
 }
 
@@ -168,8 +226,9 @@ async function upload(lesson) {
         }
 
         debug(result.message);
+    
     } catch (err) {
-        console.log(err);
+        debug(err);
     }
 }
 
@@ -184,7 +243,7 @@ async function addToCart(lessonID) {
         debug(result.message);
     
     } catch (err) {
-        console.log(err);
+        debug(err);
     }
 }
 
@@ -202,7 +261,7 @@ async function deleteLessonFromCart(lessonID){
         debug(result.message)
 
     } catch (err) {
-        console.log(err);
+        debug(err);
     }
 }
 
@@ -223,11 +282,12 @@ async function checkOut(payment){
         debug(result.message);
 
     } catch (err) {
-        console.log(err);
+        debug(err);
     }
 }
 
 async function userPurchaseHistory() {
+    debug(`Accessing user's purchase history...`);
     try {
         const response = await fetch(URL + '/purchaseHistory', {
             headers : {

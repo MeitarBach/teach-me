@@ -15,6 +15,11 @@ router.get('/', checkSignIn, async (req, res, next) => {
     // Get lessons from redis
     let lessons = await DButils.getSetValues('lessons');
 
+    if (req.headers.test){
+      debug(lessons);
+      return res.status(200).send({lessons});
+    }
+
     // Filter results if needed
     const searchFilter = req.query.search;
     if (searchFilter){
@@ -38,16 +43,25 @@ router.get('/', checkSignIn, async (req, res, next) => {
 
 router.get('/lesson/:lessonID', checkSignIn, async (req, res, next)=>{
   try{
+
+    debug(`User ${req.session.user.id} is trying to view lesson ${req.params.lessonID} informaion...`);
     // Get lesson from redis
     let lesson = await redisClient.hget('lessons', req.params.lessonID);
     if(!lesson){
       lesson = await redisClient.hget('lessonsHistory', req.params.lessonID);
     }
+
     if(!lesson){
-      debug(req.params.lessonID);
+      debug(`Lesson ${req.params.lessonID} Doesn't exist!`);
       throw new Error(`Lesson ${req.params.lessonID} Doesn't exist!`);
     }
+
     lesson = JSON.parse(lesson);
+
+    if (req.headers.test) {
+      debug(lesson);
+      return res.status(200).send({lesson});
+    }
 
     // Get teacher of this lesson from redis
     let teacher = await redisClient.hget('users', lesson.instructor.id);
