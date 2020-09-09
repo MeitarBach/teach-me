@@ -10,6 +10,9 @@ router.use(rateLimit());
 
 /* GET register page. */
 router.get('/', function(req, res) {
+  if (req.session.user){ // If user is already signed in
+    return res.redirect('/store');
+  }
   res.render('register');
 });
 

@@ -9,6 +9,9 @@ router.use(rateLimit());
 
 /* GET login page. */
 router.get('/', function(req, res) {
+  if (req.session.user){ // If user is already signed in
+    return res.redirect('/store');
+  }
   debug(`A user is logging in...`);
   res.render('login', {user: req.session.user});
 });
@@ -36,7 +39,7 @@ router.post('/', async (req, res, next) =>{
         req.session.cookie.expires = false;
       }
 
-      debug(`User has logged in:`);
+      debug(`User has logged in`);
 
       res.status(200).send({message: `OK! User  has logged in:`});
     } else {
