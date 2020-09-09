@@ -31,36 +31,36 @@ const classToUpload = {
 const teacherDetails = new FormData();
 teacherDetails.append('proficiencies', "Proffesional at wall climbing, exploring visions and understanding Hodor");
 teacherDetails.append('details', "Can teach you of yourself and of the world");
-// teacherDetails.append('image', "./public/images/users/bran-test.jpg", userID);//how to handle userID?
+teacherDetails.append('image', fs.createReadStream("./public/images/users/bran-test.jpg"), "bran-test");
 
 async function test(){
     //Register new user
-    await register(user1register);
+    // await register(user1register);
     //Register new user with an already exisiting email at database
-    await register(user2register);
-    //Login non-registered user
-    await login(user2register);
-    //Login a registered user
+    // await register(user2register);
+    // //Login non-registered user
+    // await login(user2register);
+    // //Login a registered user
     await login(user1register);
-    //Upload a class before becoming a teacher
-    await upload(classToUpload);
-    //Become a teacher
-    await enrollTeacher(teacherDetails);
-    //Become a teacher again
-    await enrollTeacher(teacherDetails);
-    //Upload a class as a teacher
-    await upload(classToUpload);
-    //Add to cart
-    await addToCart(exampleLessonID);
-    //Delete lesson from cart
-    await deleteLessonFromCart(exampleLessonID);
-    //Add to cart again
-    await addToCart(exampleLessonID);
-    //Checkout
+    // //Upload a class before becoming a teacher
+    // await upload(classToUpload);
+    // //Become a teacher
+    // await enrollTeacher(teacherDetails);
+    // //Become a teacher again
+    // await enrollTeacher(teacherDetails);
+    // //Upload a class as a teacher
+    // await upload(classToUpload);
+    // //Add to cart
+    // await addToCart(exampleLessonID);
+    // //Delete lesson from cart
+    // await deleteLessonFromCart(exampleLessonID);
+    // //Add to cart again
+    // await addToCart(exampleLessonID);
+    // //Checkout
     
 }
 
-//test();
+test();
 
 async function register(user) {
     try {
@@ -71,9 +71,12 @@ async function register(user) {
             },
             body: JSON.stringify(user)
         });
-
         const result = await response.json();
-        debug(result.message);
+        if (result.redirected) {
+            debug("User is already logged in");
+        } else {
+            debug(result.message);
+        }
 
     } catch (error) {
         console.error(error);
@@ -83,7 +86,8 @@ async function register(user) {
 async function login(user) {
     const userCredentials = {
         email : user.email,
-        password : user.password
+        password : user.password,
+        remember : true
     };
 
     try {
@@ -96,7 +100,11 @@ async function login(user) {
         });
 
         const result = await response.json();
-        debug(result.message);
+        if (result.redirected) {
+            debug("User is already logged in");
+        } else {
+            debug(result.message);
+        }
 
     } catch (err) {
         console.log(err);
