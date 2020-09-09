@@ -25,7 +25,7 @@ router.put('/', checkSignIn, upload.single('image'), async (req, res, next) =>{
   try {
     // Check if the user is already a teacher
     if (user.isTeacher){
-      debug('This user is already a teacher!')
+      debug('This user is already a teacher!');
       return res.status(409).send({message: "You are already a teacher!"});
     }
 
