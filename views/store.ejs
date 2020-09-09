@@ -1,219 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>TeachMe | Store</title>
-
-    <!-- <link href="../stylesheets/bootstrap.css" rel="stylesheet" type="text/css" media="all" /> -->
-    <!-- <link href="../stylesheets/style.css" rel="stylesheet" type="text/css" media="all" /> -->
-
-    <!-- js -->
-    <!-- <script src="../javascripts/jquery.min.js"></script> -->
-    <!-- //js -->
-    <!-- cart -->
-    <!-- <script src="js/simpleCart.min.js"></script> -->
-    <!-- cart -->
-    <!-- for bootstrap working -->
-    <!-- <script type="text/javascript" src="../javascripts/bootstrap-3.1.1.min.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
-    <!-- //for bootstrap working -->
-
-    <!-- <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'> -->
-    <!-- <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
-
-    <!-- animation-effect -->
-    <!-- <link href="../stylesheets/animate.min.css" rel="stylesheet"> 
-    <script src="../javascripts/wow.min.js"></script>
-    <script>
-    new WOW().init();
-    </script> -->
-	<!-- //animation-effect -->
-	
-	<% include partials/head %>
-
-</head>
-	
-<body>
-<!-- header -->
-	<!-- <div class="header">
+	<head>
+		<title>TeachMe | Store</title>
+		<% include partials/head %>
+	</head>
+		
+	<body>
+	<!-- header -->
+		<% include partials/logged-header %>
+	<!-- //header -->
+	<!-- collections -->
+	<div class="new-collections">
 		<div class="container">
-			<div class="logo-nav">
-				<div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
-					<h1><a href="index">TeachMe <span>Shop anywhere</span></a></h1>
-				</div>
-				<div class="logo-nav-left1">
-					<nav class="navbar navbar-default"> -->
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<!-- <div class="navbar-header nav_2">
-						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div> 
-					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html" class="act">Lessons</a></li>	 -->
-							<!-- Mega Menu -->
-							<!-- <li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Teach <b class="caret"></b></a>
-								<ul class="dropdown-menu multi-column columns-3">
-									<div class="row">
-										<div class="col-sm-4">
-											<ul class="multi-column-dropdown">
-												<h6>Teachers Activities</h6>
-												<li><a href="BecomeATeacher">Become a Teacher</a></li>
-												<li><a href="AddALesson">Add a Lesson</a></li>
-											</ul>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</ul>
-							</li>
-						</ul>
-					</div>
-					</nav>
-				</div>
-				<div class="logo-nav-right">
-					<div class="search-box">
-						<div id="sb-search" class="sb-search">
-							<form>
-								<input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
-								<input class="sb-search-submit" type="submit" value="">
-								<span class="sb-icon-search"> </span>
-							</form>
+			<h3 class="animated wow zoomIn" data-wow-delay=".5s">All Lessons</h3>
+			<% for (let i = 0; i < lessons.length ; i++) { %>
+				<div class="new-collections-grids">
+				<% for (let j = 0 ; j < lessons[i].length ; j++){ %>
+					<div class="col-md-4">
+						<div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
+							<div class="new-collections-grid1-image">
+								<div class="lesson-image"><a href="/store/lesson/<%= lessons[i][j].id %>" class="product-image"><img width="150" height="150" src="<%= lessons[i][j].instructor.imageURL %>" alt=" " class="img-responsive" /></a>
+								</div>
+									<div class="new-collections-grid1-image-pos">
+									<a href="/store/lesson/<%= lessons[i][j].id %>">View Details</a>
+								</div>
+								<div class="new-collections-grid1-right">
+								</div>
+							</div>
+							<h4><a href="/store/lesson/<%= lessons[i][j].id %>"><%= lessons[i][j].title %></a></h4>
+							<p>Instructor: <%= lessons[i][j].instructor.name %></p>
+							<p>Time: <%= lessons[i][j].startTime%> - <%= lessons[i][j].endTime %></p>
+							<div class="new-collections-grid1-left simpleCart_shelfItem">
+								<p><span class="item_price">$<%= lessons[i][j].price %></span><a class="item_add" onclick="addToCart('<%= lessons[i][j].id %>')">add to cart </a></p>
+							</div>
 						</div>
-					</div> -->
-						<!-- search-scripts -->
-						<!-- <script src="../javascripts//classie.js"></script>
-						<script src="../javascripts//uisearch.js"></script>
-							<script>
-								new UISearch( document.getElementById( 'sb-search' ) );
-							</script> -->
-						<!-- //search-scripts -->
-				<!-- </div>
-				<div class="header-right">
-					<div class="cart box_1">
-						<a href="checkout.html">
-							<h3> <div class="total">
-								<span class="simpleCart_total"></span> <span id="simpleCart_quantity" class="simpleCart_quantity"></span> My Cart</div>
-								<img src="images/bag.png" alt="" />
-							</h3>
-                        </a>
-                        <p><div class="active"><a href="index" class="act">Logout <i class="material-icons">logout</i></a></div></p>
-                            
-						<div class="clearfix"> </div>
-					</div>	
+					</div>
+				<% } %>
 				</div>
 				<div class="clearfix"> </div>
-			</div>
+			<% } %>
 		</div>
-	</div> -->
-
-	<% include partials/logged-header %>
-	
-<!-- //header -->
-
-<!-- banner -->
-	<!-- <div class="banner">
-		<div class="container">
-			<div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
-        		<h3>Learn Everything Anywhere</h3><br>
-        		<h4>Expand Your Skills Set And Start Learning</h4><br>
-				<div class="wmuSlider example1">
-				</div>
-			</div>
-		</div>
-    </div>
-					<script src="../javascripts/jquery.wmuSlider.js"></script> 
-					<script>
-						$('.example1').wmuSlider();         
-					</script> 
-			</div>
-		</div>
-	</div> -->
-<!-- //banner -->
-<!-- collections -->
-<div class="new-collections">
-    <div class="container">
-        <h3 class="animated wow zoomIn" data-wow-delay=".5s">All Lessons</h3>
-        <% for (let i = 0; i < lessons.length ; i++) { %>
-            <div class="new-collections-grids">
-               <% for (let j = 0 ; j < lessons[i].length ; j++){ %>
-                <div class="col-md-4">
-                    <div class="new-collections-grid1 animated wow slideInUp" data-wow-delay=".5s">
-                        <div class="new-collections-grid1-image">
-                            <div class="lesson-image"><a href="/store/lesson/<%= lessons[i][j].id %>" class="product-image"><img width="150" height="150" src="<%= lessons[i][j].instructor.imageURL %>" alt=" " class="img-responsive" /></a>
-                            </div>
-                                <div class="new-collections-grid1-image-pos">
-                                <a href="/store/lesson/<%= lessons[i][j].id %>">View Details</a>
-                            </div>
-                            <div class="new-collections-grid1-right">
-                            </div>
-                        </div>
-                        <h4><a href="/store/lesson/<%= lessons[i][j].id %>"><%= lessons[i][j].title %></a></h4>
-                        <p>Instructor: <%= lessons[i][j].instructor.name %></p>
-                        <p>Time: <%= lessons[i][j].startTime%> - <%= lessons[i][j].endTime %></p>
-                        <div class="new-collections-grid1-left simpleCart_shelfItem">
-                            <p><span class="item_price">$<%= lessons[i][j].price %></span><a class="item_add" onclick="addToCart('<%= lessons[i][j].id %>')">add to cart </a></p>
-                        </div>
-                    </div>
-                </div>
-               <% } %>
-            </div>
-            <div class="clearfix"> </div>
-        <% } %>
-    </div>
-</div>
-<!-- banner -->
-<!-- <div class="banner">
-    <div class="container">
-        <div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
-            <h3>Learn Everything Anywhere</h3><br>
-            <h4>Expand Your Skills Set And Start Learning</h4><br>
-            <div class="wmuSlider example1">
-            </div>
-        </div>
-    </div>
-</div>
-                <script src="../javascripts/jquery.wmuSlider.js"></script> 
-                <script>
-                    $('.example1').wmuSlider();         
-                </script> 
-        </div>
-    </div>
-</div> -->
-<!-- //banner -->
-<!-- //collections -->
-
-<!-- footer -->
-<!-- <div class="footer">
-  <div class="container">
-    <div class="footer-grids">
-      <div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".5s">
-        <h3>About Us</h3>
-        <p>TeachMe is a platform which connects between people looking to learn and aquire new skills and masters that will teach them.</span></p>
-      </div>
-      <div class="col-md-3 footer-grid animated wow slideInLeft" data-wow-delay=".6s">
-        <h3>Contact Info</h3>
-        <ul>
-          <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:TeachMe@example.com">info@example.com</a></li>
-        </ul>
-      </div>
-      
-      <div class="clearfix"> </div>
-    </div>
-    <div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
-      <h2><a href="/">TeachMe <span>shop anywhere</span></a></h2>
-    </div>
-  </div>
-</div> -->
-
-<% include partials/footer %>
-
-<!-- //footer -->
-<!-- javascript -->	
-<script type="text/javascript" src="../javascripts/store.js"></script>
-<!-- //javascript -->
-</body>
+	</div>
+	<!-- //collections -->
+	<!-- footer -->
+	<% include partials/footer %>
+	<!-- //footer -->
+	<!-- javascript -->	
+	<script type="text/javascript" src="../javascripts/store.js"></script>
+	<!-- //javascript -->
+	</body>
 </html>
