@@ -40,6 +40,7 @@ router.post('/', async (req, res, next) =>{
 
       res.status(200).send({message: `OK! User  has logged in:`});
     } else {
+      debug(`User entered wrong credentials!`);
       res.status(404).send({message: `*The email or password were incorrect!`});
     }
     
