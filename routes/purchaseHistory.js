@@ -12,6 +12,9 @@ router.get('/', checkSignIn, function(req, res, next) {
   const userPurchases = req.session.user.purchaseHistory;
   debug(userPurchases);
   
+  if(req.headers.test){
+    return res.status(200).send({userPurchases});
+  }
   res.render('purchaseHistory', {userPurchases});
 });
 

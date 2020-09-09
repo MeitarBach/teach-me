@@ -25,7 +25,13 @@ router.get('/logout', checkSignIn, function(req, res) {
     req.session.destroy();
     debug(`User ${userID} has logged out successfully...`);
   }
+  
+  if (req.headers.test){
+    return res.status(200).send({message : `User ${userID} has logged out successfully`});
+  }
+  
   res.redirect('/');
+
 });
 
 module.exports = router;

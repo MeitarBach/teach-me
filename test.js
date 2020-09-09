@@ -33,6 +33,13 @@ teacherDetails.append('proficiencies', "Proffesional at wall climbing, exploring
 teacherDetails.append('details', "Can teach you of yourself and of the world");
 teacherDetails.append('image', fs.createReadStream("./public/images/users/bran-test.jpg"), "bran-test");
 
+const paymentExample = {
+    cardHolder : "Bran Stark",
+    cardNumber : "4242 4242 4242 4242",
+    expirationDate : "2020-09",
+    cvv : "123"
+}
+
 async function test(){
     //Register new user
     // await register(user1register);
@@ -49,14 +56,19 @@ async function test(){
     // //Become a teacher again
     // await enrollTeacher(teacherDetails);
     // //Upload a class as a teacher
-    await upload(classToUpload);
+    // await upload(classToUpload);
     // //Add to cart
-    await addToCart(exampleLessonID);
+    // await addToCart(exampleLessonID);
     //Trying to add same lesson again
     // await addToCart(exampleLessonID);
     // //Delete lesson from cart
-    await deleteLessonFromCart(exampleLessonID);
+    // await deleteLessonFromCart(exampleLessonID);
     // //Checkout
+    // await checkOut(paymentExample);
+    //Present user Purchase history
+    // await userPurchaseHistory();
+    //Log out user
+    await logout();
     
 }
 
@@ -181,8 +193,61 @@ async function deleteLessonFromCart(lessonID){
     }
 }
 
-async function checkOut(){}
+async function checkOut(payment){
 
-async function logout(){}
+    try {
+        const response = await fetch(URL + '/checkout', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Cookie : cookie
+            },
+            body: JSON.stringify(payment)
+        });
+
+        const result = await response.json();
+        
+        debug(result.message);
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function userPurchaseHistory() {
+    try {
+        const response = await fetch(URL + '/purchaseHistory', {
+            headers : {
+                'Content-Type': 'application/json',
+                test: true,
+                Cookie : cookie
+            }
+        });
+    
+        const result = await response.json();
+        debug(result.userPurchases);
+    
+    } catch (err) {
+        debug(err);
+    }
+}
+
+async function logout() {
+    try {
+        const response = await fetch(URL + '/logout', {
+            headers : {
+                'Content-Type': 'application/json',
+                test: true,
+                Cookie : cookie
+            }
+        });
+    
+        const result = await response.json();
+        debug(result.message);
+    
+    } catch (err) {
+        debug(err);
+    }
+}
 
 async function adminTest(){}
