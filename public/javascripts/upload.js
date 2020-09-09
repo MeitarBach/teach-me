@@ -11,7 +11,7 @@ async function upload() {
     const title = document.getElementById("title").value;
     const subject = document.getElementById("subject").value;
     const details = document.getElementById("details").value;
-    const StartTime = document.getElementById("start-time").value;
+    const startTime = document.getElementById("start-time").value;
     const endTime = document.getElementById("end-time").value;
     const price = document.getElementById("price").value;
     
@@ -19,7 +19,7 @@ async function upload() {
         title,
         subject,
         details,
-        StartTime,
+        startTime,
         endTime,
         price
     }
