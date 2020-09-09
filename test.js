@@ -1,5 +1,7 @@
 const fetch = require('node-fetch');
 const debug = require('debug')('teach-me:test');
+const FormData = require('form-data');
+const fs = require('fs');
 
 const URL = "http://localhost:3000";
 
@@ -29,7 +31,7 @@ const classToUpload = {
 const teacherDetails = new FormData();
 teacherDetails.append('proficiencies', "Proffesional at wall climbing, exploring visions and understanding Hodor");
 teacherDetails.append('details', "Can teach you of yourself and of the world");
-teacherDetails.append('image', "./public/images/users/bran-test.jpg", userID);//how to handle userID?
+// teacherDetails.append('image', "./public/images/users/bran-test.jpg", userID);//how to handle userID?
 
 async function test(){
     //Register new user
@@ -103,7 +105,7 @@ async function login(user) {
 
 async function enrollTeacher(details) {
     try {
-        const response = await fetch('/enroll', {
+        const response = await fetch(URL +'/enroll', {
             method: 'PUT',
             body: details
         });
@@ -118,7 +120,7 @@ async function enrollTeacher(details) {
 
 async function upload(lesson) {
     try {
-        const response = await fetch('/upload', {
+        const response = await fetch(URL + '/upload', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -142,7 +144,7 @@ async function upload(lesson) {
 
 async function addToCart(lessonID) {
     try {
-        const response = await fetch(`/store/add-to-cart/${lessonID}`);
+        const response = await fetch(URL + `/store/add-to-cart/${lessonID}`);
         const result = await response.json();
         debug(result.message);
     
@@ -153,7 +155,7 @@ async function addToCart(lessonID) {
 
 async function deleteLessonFromCart(lessonID){
     try {
-        const response = await fetch(`/cart/${lessonID}`, {method: 'DELETE'});
+        const response = await fetch(URL + `/cart/${lessonID}`, {method: 'DELETE'});
 
         const result = await response.json();
         
