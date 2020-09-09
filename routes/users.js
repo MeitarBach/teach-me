@@ -8,7 +8,7 @@ const rateLimit = require('../controllers/protection');
 
 router.use(rateLimit());
 
-/* GET store page. */
+/* GET users page. */
 router.get('/', checkSignIn, async (req, res, next) => {
   debug(`Trying to access users' activity...`)
   try {

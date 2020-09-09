@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README.html</title>
+	</head>
+    <body>
+            <h1>TeachMe</h1> 
+			<h4>Learn Everywhere</h4>
+			<br>      
+			<h2>What Are We Selling? </h2>
+			<p>
+				At teachMe you can find a private teacher and learn anything you would like to know - <strong>online.</strong><br>
+				This is the place to aquire new skills and get help from experienced individuals and professionals.
+			</p>
+			<br>
+			<h2>What additional page(s) did you add? How to operate them</h2>
+            <p>
+				<u>Become a Teacher</u> - Our platform allows users to become teachers, offer their services as online tutors and share their experience with others.<br>
+										  In this page every user can enroll as a teacher, upload his photo and share details about his proficiencies and experience.<br>
+										  In order to be able to upload lessons to our store <u>you must</u> register as a teacher first and update your details.<br>
+				
+				<br><u>Add a Class</u>- Every teacher in our system is able to upload a new class to our store.<br>
+										This is the page where teachers upload classes, provide details about them, and set their price + scheduled time.<br>
+				
+				<br><u>View Details</u>- At our store main page you can find all available classes for sale, pressing the 'view details' button presents a detailed page of the chosen lesson.<br>
+				
+				<br><u>My Purchases</u>- In the user dropdown menu, every user can access his detailed purchase history.<br>
+				
+				
+			</p>
+			
+			
+			<br>
+			<h2>What Was Hard To Do?</h2>
+			<p>
+				Overall this project has been very challenging and constructive. This is the first time I've built an application from scratch including both front and back ends.<br>
+				Understanding how to orchestrate between them, while sending data back and forth and using a DB was very challenging.<br>
+				Another challenging part was getting the pages to look like we wanted them to using css. Executing our vision and designing it with code proved to be a hard task.
+				
+			</p>	
+			<br><h2>Who is your partner?  name and id. What did you do? What did your partner do?</h2>
+			<p>
+				My partener is Ma<strong>y</strong> Elenberg - 316265974.<br>
+				Most of the time we worked on the project together as we both wanted to gain experience in every aspect of the job - front/server sides + working with redis.<br>
+				As we caught the hang of it we divided some of the work load between us -<br>
+				May dealt with pages that were tricky to design, like individual user's purchase history page, admin's view of users' personal details and activity-log page.<br>
+				May also implemented DOS security using rate-limiter and wrote most of the testing script by herself.<br>
+				I took on the job of implementing some of the user functionalities we haven't already developed together - Adding/Deleting a lesson to/from the cart, Registering as a teacher, Uploading a class + individual class view, User's cart and Checkout pages.<br>
+				I also implemented the search functionality for filtering the lessons on our main store page.
+			</p>
+			<br><h2>Specify all the different routes your app supports</h2>
+			<p>
+				<ul>
+					<h3> User Routes </h3>
+					<li> Get /
+					<li> GET /register
+					<li> POST /register
+					<li> GET /login
+					<li> POST /login
+					<li> GET /logout
+					<li> GET /store<i>(?search='Filter-Expression')</i>
+					<li> GET /store/add-to-cart/:lessonID
+					<li> GET /store/lesson/:lessonID
+					<li> GET /enroll
+					<li> PUT /enroll
+					<li> GET /upload
+					<li> POST /upload
+					<li> GET /cart
+					<li> DELETE /cart/:lessonID
+					<li> GET /checkout
+					<li> POST /checkout
+					<li> GET /purchaseHistory
+					<h3>ADMIN routes</h3>
+					<li> GET /users
+					<li> GET /users/activity-log/:userID
+				</ul>
+			</p>
+			<h2>How Did You Make Your Code Secure?</h2>
+			<p>
+				We used express-rate-limit library to prevent DOS attacks.<br>
+				The rate limiter makes sure we get a maximum of 30 requests every second from the same ip address.<br>
+				We set the cookies we send our users to expire after 30 minutes to prevent session hi-jacking (unless the user specifies he wishes to be remembered).<br>
+				We protected most of our routes with a checkSignIn method, making sure only logged in users can send requests to the server.<br>
+				We wrote our redis accessing code while making sure it isn't susceptible to malicious code injection 'using the front door'.
+			</p>
+			<br><h2>Did You Implement The Store Using React.js??</h2>
+			<p> No, we used EJS template engine </p>
+			
+    </body>
+</html>
