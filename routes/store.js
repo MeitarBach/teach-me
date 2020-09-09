@@ -12,8 +12,11 @@ router.use(rateLimit());
 router.get('/', checkSignIn, async (req, res, next) => {
   debug(`User ${req.session.user.id} is accessing the store...`);
   try{
-    // Get lessons from redis
+    // Get lessons from redis - Sorted by startTime
     let lessons = await DButils.getSetValues('lessons');
+    lessons = lessons.sort((lessonA, lessonB) => {
+      return (new Date(lessonA.startTime) - new Date(lessonB.startTime));
+    });
 
     // Filter results if needed
     const searchFilter = req.query.search;
