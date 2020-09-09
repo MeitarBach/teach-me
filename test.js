@@ -43,13 +43,13 @@ async function test(){
     // //Login a registered user
     await login(user1register);
     // //Upload a class before becoming a teacher
-    await upload(classToUpload);
+    // await upload(classToUpload);
     // //Become a teacher
     // await enrollTeacher(teacherDetails);
     // //Become a teacher again
     // await enrollTeacher(teacherDetails);
     // //Upload a class as a teacher
-    // await upload(classToUpload);
+    await upload(classToUpload);
     // //Add to cart
     // await addToCart(exampleLessonID);
     // //Delete lesson from cart
@@ -110,7 +110,10 @@ async function enrollTeacher(details) {
     try {
         const response = await fetch(URL +'/enroll', {
             method: 'PUT',
-            body: details
+            body: details,
+            headers: {
+                'Cookie': cookie
+              }
         });
           
         const result = await response.json();
