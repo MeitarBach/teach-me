@@ -2,7 +2,6 @@ const redisClient = require('../redis/redisConnector');
 const DButils = {}
 
 DButils.splitArrayToChunks = (arr, chunkSize) => {
-    // arr = DButils.parseObjectArray(arr);
     let resultArr = [];
     let i, arrChunk;
     for (i=0 ; i < arr.length ; i += chunkSize) {

@@ -7,14 +7,16 @@
     <title>README.html</title>
 	</head>
     <body>
-            <h1>TeachMe</h1> 
+			<h1>TeachMe</h1>
+			<h4>Learn Everywhere</h4>
+			<h5>Mai Elenberg 316265974</h5>
 			<br>      
-			<h2>What Are We Selling? </h2>
+			<h2>What Aare We Selling? </h2>
 			<p>
 				At teachMe you can find a private online teacher to learn every subject and every skill you would like to gain<br>
 			</p>
 			
-			<br><h2>What additional page(s) did you add? How to operate them</h2>
+			<br><h2>What Additional Page(s) Did You Add? How To Operate Them</h2>
             <p>
 				<u>Become a Teacher</u>- in this page every user can decide whether he would like to offer himself as a teacher in the system.<br>
 					In order to be able to add your lessons to our store <u>you must</u> register as a teacher first and update your details.<br>
@@ -36,27 +38,56 @@
 				Another aspect that was quite challenging was generally working with all the different design modules and libraries for the first time, some very small visual frontend details took us plenty of time to implement.
 				
 			</p>	
-			<br><h2>Who is your partner?  name and id. What did you do? What did your partner do?</h2>
+			<br><h2>Who Is Your Partner?  Name and ID. What Did You Do? What Did Your Partner Do?</h2>
 			<p>
-				My partener is Meitar Bach 205707235.
-				
+				My partener is Meitar Bach 205707235.<br>
+				As this project is the first time of both Meitar and I, of developing an end to end application, involving both client and server side and data base managment using Redis,
+				We worked on the orject together as we both wanted to gain the experince at every aspect of project. After some time of diving together to the deepness of designing our platform's functionality
+				we devided some of the work between us-
+				Meitar dealt with the implemmntaion of some complex pages of user funcionalities such as adding/delteing a lesson to/from a user's cart, registering users as teachers in the system, uploading a new class to the store and
+				displaying a detailed single lesson view, accessing a user's cart and perfomring checkout. Another task Meitar has done kneetly was to implemnt the search functionlaity for filtering the lessons at our main store homepage.
+				Some of the pages that I implemented were tricky to design, like the individual user's purchase history page, the admin's view of users' personal details and the activity-log page.
+				I was also in charge of implemneting DOS security measuers while using rate-limiter and wrote most of the testing script by myself.
 			</p>
-			<br><h2>Specify all the different route your app supports</h2>
+			
+			<br><h2>Specify All The Different Routes Your App Supports</h2>
 			<p>
 				<ul>
-					<li>
-					<li>
-					<li>
-					<li>
-					<li>
+					<h3> User Routes </h3>
+					<li> Get /
+					<li> GET /register
+					<li> POST /register
+					<li> GET /login
+					<li> POST /login
+					<li> GET /logout
+					<li> GET /store<i>(?search='Filter-Expression')</i>
+					<li> GET /store/add-to-cart/:lessonID
+					<li> GET /store/lesson/:lessonID
+					<li> GET /enroll
+					<li> PUT /enroll
+					<li> GET /upload
+					<li> POST /upload
+					<li> GET /cart
+					<li> DELETE /cart/:lessonID
+					<li> GET /checkout
+					<li> POST /checkout
+					<li> GET /purchaseHistory
+					<h3>ADMIN routes</h3>
+					<li> GET /users
+					<li> GET /users/activity-log/:userID
 				</ul>
 			</p>
 			<h2>How Did You Make Your Code Secure?</h2>
 			<p>
-				
+				We used express-rate-limit library to prevent DOS attacks.
+				The rate limiter makes sure we get a maximum of 30 requests every second from the same ip address.
+				We set the cookies we send our users to expire after 30 minutes to prevent session hi-jacking (unless the user specifies he wishes to be remembered).
+				We protected most of our routes with a checkSignIn method, making sure only logged in users can send requests to the server.
+				We wrote our redis accessing code while making sure it isn't susceptible to malicious code injection 'using the front door'.
+
 			</p>
 			<br><h2>Did You Implement The Store Using React.js??</h2>
-			<p> No </p>
+			<p> No, we used EJS template engine </p>
 			
     </body>
 </html>

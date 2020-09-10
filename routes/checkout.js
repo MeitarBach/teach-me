@@ -45,7 +45,6 @@ router.post('/', checkSignIn, async (req, res, next) =>{
             userCart = JSON.parse(userCart);
         }
 
-        
         // Add cart to user's purchase history
         userCart.checkoutDate = new Date().toUTCString().slice(0, -7);
         userCart.orderID = shortid.generate();
@@ -53,7 +52,6 @@ router.post('/', checkSignIn, async (req, res, next) =>{
         await redisClient.hset('users', user.id, JSON.stringify(user));
         debug(`Added user's cart to his purchase history:`);
         debug(user.purchaseHistory);
-
 
         // Save order with payment details to redis
         const order = {
