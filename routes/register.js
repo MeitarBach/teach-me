@@ -46,7 +46,7 @@ router.post('/', async(req, res, next) => {
       // everything works as expected
       debug('Adding a new user to redis:');
       debug(user);
-      await redisClient.hmset('users', user.id, JSON.stringify(user));
+      await redisClient.hset('users', user.id, JSON.stringify(user));
       res.status(201).send({message: "The user has registered successfully"});
     }
 
