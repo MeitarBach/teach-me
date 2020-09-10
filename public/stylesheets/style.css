@@ -330,14 +330,14 @@ a.simpleCart_empty {
 
 .banner::before {    
 	content: "";
-	background:url(../images/banner.jpg) no-repeat 0px 0px;
+	background:url(../images/banner3.jpg) no-repeat 0px 0px;
 	background-size: cover;
 	position: absolute;
 	top: 0px;
 	right: 0px;
 	bottom: 0px;
 	left: 0px;
-	opacity: 0.65;
+	opacity: 0.45;
 }
 .banner-info h3{
 	font-size:5em;
