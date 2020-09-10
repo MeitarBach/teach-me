@@ -142,7 +142,6 @@ async function login(user) {
         });
 
         cookie = response.headers.get('set-cookie').split(';')[0];
-        // debug(response.headers.get('set-cookie'));
         const result = await response.json();
         debug(result.message);
 
@@ -222,7 +221,7 @@ async function upload(lesson) {
         const result = await response.json();
             
         if (response.ok) {
-            exampleLessonID = result.lessonID //Automatically global variable to be used in add to cart
+            exampleLessonID = result.lessonID // Global variable to be used in later tests
         }
 
         debug(result.message);
